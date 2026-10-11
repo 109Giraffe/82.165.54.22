@@ -22,3 +22,27 @@
 .bruce-schematic{margin-top:10px}
 .bruce-schematic img{display:block;width:100%;max-height:520px;object-fit:contain}
 .bruce-schematic figcaption{padding:10px}
+
+
+/* Clear separation between the early breadboard prototype and custom PCB V1 */
+.bruce-phase{min-width:0}
+.bruce-phase-heading{display:flex;align-items:flex-start;gap:12px;margin:4px 0 12px}
+.bruce-phase-index{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-width:68px;min-height:29px;padding:5px 8px;border:1px solid #247d68;border-radius:7px;background:#092a24;color:#8af0c5;font:10px var(--mono);letter-spacing:.04em}
+.bruce-phase-heading h4{margin:5px 0 5px;font:600 14px var(--mono);color:var(--text)}
+.bruce-phase-heading p{margin:0;color:var(--muted);font-size:11px;line-height:1.6}
+.bruce-phase-prototype{padding:13px;border:1px solid #24566a;border-radius:9px;background:linear-gradient(145deg,#0b2432,#08151f)}
+.bruce-phase-prototype .bruce-phase-index{border-color:#2c718c;background:#0b2b3a;color:#9edfff}
+.bruce-prototype-photo{margin:0;overflow:hidden;border:1px solid #285267;border-radius:8px;background:#06101a}
+.bruce-prototype-photo>a{display:block;background:#050c13}
+.bruce-prototype-photo img{display:block;width:100%;max-height:360px;object-fit:contain}
+.bruce-prototype-photo figcaption{display:flex;flex-direction:column;gap:5px;padding:10px}
+.bruce-prototype-photo figcaption span{font:9px var(--mono);color:#9edfff;letter-spacing:.05em}
+.bruce-prototype-photo figcaption strong{font:11px var(--mono);color:var(--text)}
+.bruce-prototype-photo figcaption small{font-size:10px;line-height:1.5;color:var(--muted)}
+.bruce-phase-divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:#6e9bb0;font:9px var(--mono);letter-spacing:.14em}
+.bruce-phase-divider:before,.bruce-phase-divider:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#285267)}
+.bruce-phase-divider:after{background:linear-gradient(90deg,#285267,transparent)}
+.bruce-phase-pcb{padding:13px;border:1px solid #1b4d43;border-radius:9px;background:linear-gradient(145deg,#08251f,#081520)}
+.bruce-phase-pcb .bruce-phase-heading{margin-bottom:14px}
+.bruce-phase-pcb .bruce-phase-heading h4{margin-top:7px}
+@media(max-width:800px){.bruce-phase-heading{gap:8px}.bruce-phase-index{min-width:61px;font-size:9px}.bruce-prototype-photo img{max-height:300px}}
