@@ -46,6 +46,24 @@ menuToggle.addEventListener("click", () => {
   nav.classList.toggle("open", !expanded);
 });
 
+// This is elapsed time since the counter's launch date, not a measured uptime percentage.
+const SITE_COUNTER_START = new Date("2026-10-11T00:00:00Z").getTime();
+
+function updateSiteUptime() {
+  const output = document.getElementById("siteUptime");
+  if (!output) return;
+  let seconds = Math.max(0, Math.floor((Date.now() - SITE_COUNTER_START) / 1000));
+  const days = Math.floor(seconds / 86400);
+  seconds %= 86400;
+  const hours = Math.floor(seconds / 3600);
+  seconds %= 3600;
+  const minutes = Math.floor(seconds / 60);
+  seconds %= 60;
+  output.textContent = `${days}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
+}
+updateSiteUptime();
+setInterval(updateSiteUptime, 1000);
+
 function updateClock() {
   const now = new Date();
   document.getElementById("clock").textContent = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
