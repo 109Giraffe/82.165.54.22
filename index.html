@@ -98,7 +98,31 @@
         <div class="electronics-banner panel"><div><p class="eyebrow">DESIGN · BUILD · TEST</p><h2>From schematic to hardware.</h2><p>Project notes, PCB revisions, component choices and practical lessons belong here.</p></div><div class="circuit-art" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><i>PCB / LAB</i></div></div>
         <div class="section-heading"><div><p class="eyebrow">PROJECT CATEGORIES</p><h2>Browse the lab</h2></div></div>
         <div class="tile-grid">
-          <article class="panel project-tile"><div class="tile-art art-pcb">PCB<span>▦</span></div><div class="tile-content"><span class="pill">PCB DESIGN</span><h3>Custom circuit boards</h3><p>KiCad schematics, board layouts, connector choices, revisions and assembly notes.</p><div class="project-subsection"><span class="pill pill-green">FEATURED BUILD</span><h4>Custom Bruce Device</h4><p>A custom PCB to bring the Bruce hardware and radio modules together into a compact, tidy build.</p><div class="tag-list"><span>KiCad</span><span>ESP32-S3</span><span>Radio modules</span></div></div></div></article>
+          <article class="panel project-tile"><div class="tile-art art-pcb">PCB<span>▦</span></div><div class="tile-content"><span class="pill">PCB DESIGN</span><h3>Custom circuit boards</h3><p>KiCad schematics, board layouts, connector choices, revisions and assembly notes.</p><div class="project-subsection bruce-project">
+  <span class="pill pill-green">FEATURED BUILD · V1</span>
+  <h4>Custom Bruce PCB</h4>
+  <p>A custom two-layer PCB designed in KiCad to replace the original breadboard-and-jumper-wire setup with a cleaner, modular layout for a Bruce-based ESP32-S3 device.</p>
+  <div class="tag-list"><span>KiCad</span><span>2-layer PCB</span><span>ESP32-S3</span><span>JST connectors</span></div>
+  <div class="bruce-progress"><span class="status-dot status-online"></span><span><strong>Current stage:</strong> board assembled and modules connected for testing; buttons and final integration still to come.</span></div>
+  <h5 class="bruce-subheading">Build log</h5>
+  <div class="bruce-stage-list">
+    <div class="bruce-stage"><span class="stage-number">01</span><div><strong>PCB layout in KiCad</strong><p>Routed the board around the ESP32-S3 module, peripheral connectors, passive components and power connections. The board carries its project label and version on the silkscreen.</p></div></div>
+    <div class="bruce-stage"><span class="stage-number">02</span><div><strong>Manufactured bare PCB</strong><p>The green two-layer board arrived with component outlines, labels and through-hole pads ready for assembly.</p></div></div>
+    <div class="bruce-stage"><span class="stage-number">03</span><div><strong>Through-hole assembly</strong><p>Soldered the resistors, capacitors, headers and JST connectors onto the board, leaving the main ESP32-S3 module position ready to accept the development board.</p></div></div>
+    <div class="bruce-stage"><span class="stage-number">04</span><div><strong>Modules connected for testing</strong><p>The ESP32-S3 and peripheral modules have been connected to the assembled PCB for initial testing. Physical buttons and the remaining integration work are still pending.</p></div></div>
+  </div>
+  <h5 class="bruce-subheading">Hardware shown in the wiring schematic</h5>
+  <div class="bruce-hardware-grid">
+    <span>ESP32-S3</span><span>Display</span><span>CC1101</span><span>nRF24L01 PA/LNA</span><span>PN532 NFC</span><span>MicroSD reader</span><span>IR input / output</span><span>GPS module</span>
+  </div>
+  <p class="bruce-note">The supplied schematic is the wiring reference for the intended hardware. The current test photo shows the modules connected; the build is still in progress, so this is not presented as a finished device.</p>
+  <div class="bruce-gallery" aria-label="Bruce PCB project photo stages">
+    <div class="bruce-photo-placeholder"><span>STAGE 01</span><strong>KiCad layout</strong><small>PCB routing and component placement</small></div>
+    <div class="bruce-photo-placeholder"><span>STAGE 02</span><strong>Bare PCB</strong><small>Manufactured board, both sides</small></div>
+    <div class="bruce-photo-placeholder"><span>STAGE 03</span><strong>Assembly</strong><small>Passives, headers and connectors soldered</small></div>
+    <div class="bruce-photo-placeholder"><span>STAGE 04</span><strong>Module test</strong><small>Current test setup with modules connected</small></div>
+  </div>
+</div></div></article>
           <article class="panel project-tile"><div class="tile-art art-embedded">MCU<span>⌘</span></div><div class="tile-content"><span class="pill">EMBEDDED</span><h3>Microcontrollers</h3><p>ESP32, Arduino and other hardware experiments, including firmware and interfaces.</p><span class="muted small">Document wiring, firmware and test results.</span></div></article>
           <article class="panel project-tile"><div class="tile-art art-radio">RF<span>⌁</span></div><div class="tile-content"><span class="pill">RADIO / RF</span><h3>Wireless experiments</h3><p>Radio modules, antennas, telemetry and legal, low-power communications projects.</p><span class="muted small">Include frequency and compliance notes when relevant.</span></div></article>
         </div>
