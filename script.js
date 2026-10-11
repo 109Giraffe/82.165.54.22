@@ -1,15 +1,12 @@
 /*
  * Public-facing Sky_Hex site.
- * Service states intentionally default to "unknown" rather than pretending to be live.
- * Later, replace this local configuration with a carefully limited public status endpoint.
+ * The status feed is read-only and contains only public service states.
  */
+const STATUS_URL = "/status.json";
+const STATUS_MAX_AGE_MS = 120_000;
 const PUBLIC_STATUS = {
   updatedAt: null,
-  services: {
-    stormworks: "unknown",
-    minecraft: "unknown",
-    ksp: "unknown"
-  }
+  services: { stormworks: "unknown", ksp: "unknown" }
 };
 
 const pageNames = ["home", "games", "electronics", "projects", "about"];
@@ -61,19 +58,23 @@ setInterval(updateClock, 1000);
 const statusLabels = {
   online: "Online",
   offline: "Offline",
-  unknown: "Unverified"
+  unknown: "Unknown"
 };
+
 function renderPublicStatus() {
   const services = PUBLIC_STATUS.services;
   document.querySelectorAll("[data-service]").forEach(el => {
-    const state = statusLabels[services[el.dataset.service] || "unknown"] ? (services[el.dataset.service] || "unknown") : "unknown";
+    const value = services[el.dataset.service];
+    const state = value === "online" || value === "offline" ? value : "unknown";
     el.textContent = statusLabels[state];
     el.classList.remove("is-online", "is-offline");
     if (state === "online") el.classList.add("is-online");
     if (state === "offline") el.classList.add("is-offline");
   });
   document.querySelectorAll("[data-service-text]").forEach(el => {
-    el.textContent = statusLabels[services[el.dataset.service] || "unknown"] || "Unverified";
+    const value = services[el.dataset.service];
+    const state = value === "online" || value === "offline" ? value : "unknown";
+    el.textContent = statusLabels[state];
   });
 
   const values = Object.values(services);
@@ -83,11 +84,11 @@ function renderPublicStatus() {
   const lastUpdated = document.getElementById("lastUpdated");
   const sideDot = document.querySelector(".side-status .status-dot");
   const uptimeDot = document.querySelector(".uptime-foot .status-dot");
-
   [sideDot, uptimeDot].forEach(dot => dot.classList.remove("status-online", "status-offline"));
+
   if (values.length && values.every(value => value === "online")) {
     overall.textContent = "All monitored online";
-    description.textContent = "All listed services report online.";
+    description.textContent = "Both monitored services report online.";
     sideStatus.textContent = "Services online";
     sideDot.classList.add("status-online");
     uptimeDot.classList.add("status-online");
@@ -98,13 +99,38 @@ function renderPublicStatus() {
     sideDot.classList.add("status-offline");
     uptimeDot.classList.add("status-offline");
   } else {
-    overall.textContent = "Not connected";
-    description.textContent = "Live checks have not been configured.";
-    sideStatus.textContent = "Status not connected";
-    lastUpdated.textContent = "No live status feed";
+    overall.textContent = "Status unknown";
+    description.textContent = "The live status feed is unavailable or not yet verified.";
+    sideStatus.textContent = "Status unknown";
+    lastUpdated.textContent = "No fresh status feed";
   }
-  if (PUBLIC_STATUS.updatedAt) lastUpdated.textContent = `Status checked ${PUBLIC_STATUS.updatedAt}`;
+  if (PUBLIC_STATUS.updatedAt) {
+    lastUpdated.textContent = "Status checked " + new Date(PUBLIC_STATUS.updatedAt).toLocaleString();
+  }
 }
 
-renderPublicStatus();
+async function fetchPublicStatus() {
+  try {
+    const response = await fetch(STATUS_URL + "?_=" + Date.now(), { cache: "no-store" });
+    if (!response.ok) throw new Error("Status feed unavailable");
+    const data = await response.json();
+    const timestamp = Date.parse(data.updatedAt);
+    if (!Number.isFinite(timestamp) || Date.now() - timestamp > STATUS_MAX_AGE_MS || timestamp > Date.now() + 30_000) {
+      throw new Error("Status feed is stale");
+    }
+    const services = data.services || {};
+    PUBLIC_STATUS.services = {
+      stormworks: ["online", "offline"].includes(services.stormworks) ? services.stormworks : "unknown",
+      ksp: ["online", "offline"].includes(services.ksp) ? services.ksp : "unknown"
+    };
+    PUBLIC_STATUS.updatedAt = data.updatedAt;
+  } catch {
+    PUBLIC_STATUS.services = { stormworks: "unknown", ksp: "unknown" };
+    PUBLIC_STATUS.updatedAt = null;
+  }
+  renderPublicStatus();
+}
+
+fetchPublicStatus();
+setInterval(fetchPublicStatus, 30_000);
 showPage(location.hash.slice(1) || "home", false);

@@ -50,19 +50,19 @@
           <div class="hero-label"><span class="status-dot status-unknown"></span> PUBLIC STATUS PORTAL</div>
         </div>
 
-        <div class="section-heading"><div><p class="eyebrow">OVERVIEW</p><h2>At a glance</h2></div><span class="muted small">A public-facing snapshot</span></div>
+        <div class="section-heading"><div><p class="eyebrow">OVERVIEW</p><h2>At a glance</h2></div><span class="muted small">A live public-facing snapshot</span></div>
         <div class="overview-grid">
           <article class="panel summary-card">
-            <div class="panel-title"><span class="title-icon">◉</span><div><h3>Game servers</h3><p>Availability overview</p></div><span class="pill pill-neutral">Manual status</span></div>
+            <div class="panel-title"><span class="title-icon">◉</span><div><h3>Game servers</h3><p>Availability overview</p></div><span class="pill pill-neutral">Live feed</span></div>
             <div class="mini-service"><span class="game-icon storm">S</span><div class="service-info"><strong>Stormworks</strong><small>Build and Rescue</small></div><span class="status-label" data-service="stormworks">Check status</span></div>
-            <div class="mini-service"><span class="game-icon minecraft">M</span><div class="service-info"><strong>Minecraft</strong><small>NeoForge · 1.21.1</small></div><span class="status-label" data-service="minecraft">Check status</span></div>
+
             <div class="mini-service"><span class="game-icon ksp">K</span><div class="service-info"><strong>KSP · DMP</strong><small>Luna multiplayer</small></div><span class="status-label" data-service="ksp">Check status</span></div>
             <a class="panel-link" href="#games" data-page="games">Server details <span>→</span></a>
           </article>
 
           <article class="panel uptime-card">
             <div class="panel-title"><span class="title-icon">◷</span><div><h3>Service status</h3><p>Public availability only</p></div></div>
-            <div class="uptime-display"><div class="uptime-ring"><span>●</span></div><div><strong id="overallStatus">Not connected</strong><p id="overallDescription">Live checks have not been configured.</p></div></div>
+            <div class="uptime-display"><div class="uptime-ring"><span>●</span></div><div><strong id="overallStatus">Not connected</strong><p id="overallDescription">Waiting for the live status feed.</p></div></div>
             <div class="uptime-foot"><span class="status-dot status-unknown"></span><span id="lastUpdated">No live status feed</span></div>
             <p class="privacy-note">Detailed host metrics and administration interfaces are not published here.</p>
           </article>
@@ -87,7 +87,7 @@
         <div class="page-heading"><p class="eyebrow">MULTIPLAYER · COMMUNITY</p><h1>Game <span>servers</span></h1><p>Connection information and public availability. If a status has not been wired to a live check, it will say so instead of guessing.</p></div>
         <div class="service-grid">
           <article class="panel game-detail"><div class="game-detail-head"><span class="game-icon storm large">S</span><div><p class="eyebrow">SANDBOX / VEHICLES</p><h2>Stormworks</h2><p>Build and Rescue</p></div><span class="status-label" data-service="stormworks">Check status</span></div><p>A multiplayer world for building, testing and operating creations.</p><div class="detail-meta"><span>PUBLIC STATUS</span><strong data-service-text="stormworks">Not connected</strong></div><div class="detail-meta"><span>CONNECTION DETAILS</span><strong>Ask the server host</strong></div></article>
-          <article class="panel game-detail"><div class="game-detail-head"><span class="game-icon minecraft large">M</span><div><p class="eyebrow">SURVIVAL / MODDED</p><h2>Minecraft</h2><p>NeoForge · 1.21.1</p></div><span class="status-label" data-service="minecraft">Check status</span></div><p>A modded Minecraft server. Check with the host for the current modpack and access details.</p><div class="detail-meta"><span>PUBLIC STATUS</span><strong data-service-text="minecraft">Not connected</strong></div><div class="detail-meta"><span>VERSION</span><strong>1.21.1 · NeoForge</strong></div></article>
+
           <article class="panel game-detail"><div class="game-detail-head"><span class="game-icon ksp large">K</span><div><p class="eyebrow">SPACE / MULTIPLAYER</p><h2>Kerbal Space Program</h2><p>Dark Multiplayer · Luna</p></div><span class="status-label" data-service="ksp">Check status</span></div><p>A shared spaceflight sandbox for collaborative missions and engineering experiments.</p><div class="detail-meta"><span>PUBLIC STATUS</span><strong data-service-text="ksp">Not connected</strong></div><div class="detail-meta"><span>CONNECTION DETAILS</span><strong>Ask the server host</strong></div></article>
         </div>
         <div class="notice"><span class="notice-icon">i</span><div><strong>About server status</strong><p>Statuses are intentionally shown as unverified until a trusted status feed is configured. This page does not publish host resource usage, private ports, internal paths, or administration links.</p></div></div>
@@ -98,7 +98,7 @@
         <div class="electronics-banner panel"><div><p class="eyebrow">DESIGN · BUILD · TEST</p><h2>From schematic to hardware.</h2><p>Project notes, PCB revisions, component choices and practical lessons belong here.</p></div><div class="circuit-art" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><i>PCB / LAB</i></div></div>
         <div class="section-heading"><div><p class="eyebrow">PROJECT CATEGORIES</p><h2>Browse the lab</h2></div></div>
         <div class="tile-grid">
-          <article class="panel project-tile"><div class="tile-art art-pcb">PCB<span>▦</span></div><div class="tile-content"><span class="pill">PCB DESIGN</span><h3>Custom circuit boards</h3><p>KiCad schematics, board layouts, connector choices, revisions and assembly notes.</p><span class="muted small">Add project photos and repository links here.</span></div></article>
+          <article class="panel project-tile"><div class="tile-art art-pcb">PCB<span>▦</span></div><div class="tile-content"><span class="pill">PCB DESIGN</span><h3>Custom circuit boards</h3><p>KiCad schematics, board layouts, connector choices, revisions and assembly notes.</p><div class="project-subsection"><span class="pill pill-green">FEATURED BUILD</span><h4>Custom Bruce Device</h4><p>A custom PCB to bring the Bruce hardware and radio modules together into a compact, tidy build.</p><div class="tag-list"><span>KiCad</span><span>ESP32-S3</span><span>Radio modules</span></div></div></div></article>
           <article class="panel project-tile"><div class="tile-art art-embedded">MCU<span>⌘</span></div><div class="tile-content"><span class="pill">EMBEDDED</span><h3>Microcontrollers</h3><p>ESP32, Arduino and other hardware experiments, including firmware and interfaces.</p><span class="muted small">Document wiring, firmware and test results.</span></div></article>
           <article class="panel project-tile"><div class="tile-art art-radio">RF<span>⌁</span></div><div class="tile-content"><span class="pill">RADIO / RF</span><h3>Wireless experiments</h3><p>Radio modules, antennas, telemetry and legal, low-power communications projects.</p><span class="muted small">Include frequency and compliance notes when relevant.</span></div></article>
         </div>
@@ -108,7 +108,7 @@
       <section class="page" id="page-projects" data-title="PROJECTS">
         <div class="page-heading"><p class="eyebrow">WORK IN PROGRESS</p><h1>Selected <span>projects</span></h1><p>A changing collection of things I'm building, learning and experimenting with.</p></div>
         <div class="project-list">
-          <article class="panel project-row"><div class="project-index">01</div><div class="project-body"><span class="pill pill-green">HARDWARE</span><h2>Custom electronics PCB</h2><p>A compact board to bring modules and wiring together into a more maintainable build. Add the board photos, schematic screenshots and lessons learned.</p><div class="tag-list"><span>KiCad</span><span>PCB layout</span><span>Embedded</span></div></div><span class="project-status">IN PROGRESS</span></article>
+          <article class="panel project-row"><div class="project-index">01</div><div class="project-body"><span class="pill pill-green">HARDWARE</span><h2>Custom Bruce Device</h2><p>A custom PCB and enclosure build for a Bruce-based device, bringing the ESP32-S3 and plug-in modules together with cleaner wiring. Build notes, assembly details and testing will be added as the project develops.</p><div class="tag-list"><span>KiCad</span><span>PCB layout</span><span>Embedded</span></div></div><span class="project-status">IN PROGRESS</span></article>
           <article class="panel project-row"><div class="project-index">02</div><div class="project-body"><span class="pill">INFRASTRUCTURE</span><h2>Self-hosted game services</h2><p>Maintaining multiplayer servers and learning about Linux services, networking, monitoring and reliability.</p><div class="tag-list"><span>Ubuntu</span><span>Apache</span><span>Monitoring</span></div></div><span class="project-status">ONGOING</span></article>
           <article class="panel project-row"><div class="project-index">03</div><div class="project-body"><span class="pill">DOCUMENTATION</span><h2>Build notes & experiments</h2><p>A place to publish the useful bits: what worked, what didn't, and what changed between revisions.</p><div class="tag-list"><span>Research</span><span>Testing</span><span>Write-ups</span></div></div><span class="project-status">PLANNED</span></article>
         </div>
