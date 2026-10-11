@@ -66,3 +66,15 @@
 /* Sky_Hex brand logo */
 .brand-mark{width:43px;height:43px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;color:var(--accent)}
 .brand-mark img{display:block;width:100%;height:100%;object-fit:contain;border-radius:7px}
+
+
+/* Expanded project descriptions and upcoming TDI aerospace teaser */
+.project-body .project-detail-copy{margin-top:10px;color:#9ab2c5}
+.project-row-featured{background:linear-gradient(115deg,#0a1b29,#07111b 75%);border-color:#214052}
+.project-teaser{position:relative;border-color:#236a70;background:radial-gradient(ellipse at 90% 0%,#103c49 0,transparent 48%),linear-gradient(115deg,#0b1f2d,#07111b 72%)}
+.project-teaser:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(180deg,#64bfff,#16e6a0)}
+.project-teaser .project-index{color:#7dd7ff}
+.project-teaser-pill{border-color:#2b7180;background:#0b2936;color:#8cddff}
+.teaser-mark{display:inline-block;margin-left:7px;color:#7dd7ff;font:9px var(--mono);letter-spacing:.08em;vertical-align:middle}
+.project-status-teaser{color:#8cddff;border-color:#2b7180;background:#0a202b}
+@media(max-width:800px){.teaser-mark{display:block;margin:7px 0 0}.project-row-featured .project-detail-copy{margin-top:9px}}
