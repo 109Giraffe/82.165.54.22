@@ -46,3 +46,10 @@
 .bruce-phase-pcb .bruce-phase-heading{margin-bottom:14px}
 .bruce-phase-pcb .bruce-phase-heading h4{margin-top:7px}
 @media(max-width:800px){.bruce-phase-heading{gap:8px}.bruce-phase-index{min-width:61px;font-size:9px}.bruce-prototype-photo img{max-height:300px}}
+
+
+/* Live website running-time counter */
+.site-runtime{margin:14px 18px 4px;padding:13px 14px;border:1px solid #1b4b42;border-radius:9px;background:linear-gradient(135deg,#09251f,#071520)}
+.site-runtime .eyebrow{margin:0 0 7px;color:var(--muted);font:9px var(--mono);letter-spacing:.12em}
+.site-runtime strong{display:block;color:var(--accent);font:600 clamp(14px,1.5vw,18px) var(--mono);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.site-runtime small{display:block;margin-top:6px;color:var(--dim);font-size:10px}
