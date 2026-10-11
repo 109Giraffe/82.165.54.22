@@ -99,8 +99,13 @@
         <div class="section-heading"><div><p class="eyebrow">PROJECT CATEGORIES</p><h2>Browse the lab</h2></div></div>
         <div class="tile-grid">
           <article class="panel project-tile"><div class="tile-art art-pcb">PCB<span>▦</span></div><div class="tile-content"><span class="pill">PCB DESIGN</span><h3>Custom circuit boards</h3><p>KiCad schematics, board layouts, connector choices, revisions and assembly notes.</p><div class="project-subsection bruce-project">
-  <span class="pill pill-green">FEATURED BUILD · V1</span>
-  <h4>Custom Bruce PCB</h4>
+  <section class="bruce-phase bruce-phase-prototype" aria-labelledby="bruce-prototype-title">
+    <div class="bruce-phase-heading"><span class="bruce-phase-index">PHASE 01</span><div><h4 id="bruce-prototype-title">Breadboard prototyping</h4><p>Early experiments with the modules, wiring and connections before moving to a custom PCB.</p></div></div>
+    <figure class="bruce-prototype-photo"><a href="assets/20260621_151913.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20260621_151913.webp" alt="Early breadboard prototype of the Bruce electronics project" loading="lazy"></a><figcaption><span>EARLY DEVELOPMENT · 21 JUNE</span><strong>First working prototype</strong><small>Breadboard experiments before the custom PCB design.</small></figcaption></figure>
+  </section>
+  <div class="bruce-phase-divider"><span>DESIGN EVOLUTION</span></div>
+  <section class="bruce-phase bruce-phase-pcb" aria-labelledby="bruce-pcb-title">
+  <div class="bruce-phase-heading"><span class="bruce-phase-index">PHASE 02</span><div><span class="pill pill-green">CUSTOM PCB · VERSION 1</span><h4 id="bruce-pcb-title">First custom PCB build</h4><p>Moving from a breadboard prototype to a purpose-designed, modular two-layer board.</p></div></div>
   <p>A custom two-layer PCB designed in KiCad to replace the original breadboard-and-jumper-wire setup with a cleaner, modular layout for a Bruce-based ESP32-S3 device.</p>
   <div class="tag-list"><span>KiCad</span><span>2-layer PCB</span><span>ESP32-S3</span><span>JST connectors</span></div>
   <div class="bruce-progress"><span class="status-dot status-online"></span><span><strong>Current stage:</strong> board assembled and modules connected for testing; buttons and final integration still to come.</span></div>
@@ -126,6 +131,7 @@
   </div>
   <h5 class="bruce-subheading">Wiring schematic reference</h5>
   <figure class="bruce-schematic"><a href="assets/diy-smoochiee-board.jpg" target="_blank" rel="noopener noreferrer"><img src="assets/diy-smoochiee-board.jpg" alt="Wiring schematic reference for the Bruce device" loading="lazy"></a><figcaption>Reference schematic for the intended device wiring and peripherals.</figcaption></figure>
+  </section>
 </div></div></article>
           <article class="panel project-tile"><div class="tile-art art-embedded">MCU<span>⌘</span></div><div class="tile-content"><span class="pill">EMBEDDED</span><h3>Microcontrollers</h3><p>ESP32, Arduino and other hardware experiments, including firmware and interfaces.</p><span class="muted small">Embedded hardware and firmware development.</span></div></article>
           <article class="panel project-tile"><div class="tile-art art-radio">RF<span>⌁</span></div><div class="tile-content"><span class="pill">RADIO / RF</span><h3>Wireless experiments</h3><p>Radio modules, antennas, telemetry and legal, low-power communications projects.</p><span class="muted small">Exploring wireless links, antennas and telemetry.</span></div></article>
