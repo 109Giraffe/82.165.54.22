@@ -53,3 +53,12 @@
 .site-runtime .eyebrow{margin:0 0 7px;color:var(--muted);font:9px var(--mono);letter-spacing:.12em}
 .site-runtime strong{display:block;color:var(--accent);font:600 clamp(14px,1.5vw,18px) var(--mono);font-variant-numeric:tabular-nums;letter-spacing:.02em}
 .site-runtime small{display:block;margin-top:6px;color:var(--dim);font-size:10px}
+
+
+/* Keep the site runtime compact in the top banner */
+.topbar-right{display:flex;align-items:center;justify-content:flex-end;gap:22px;text-align:right;min-width:0}
+.topbar-runtime{display:flex;flex-direction:column;align-items:flex-end;gap:2px;padding-right:18px;border-right:1px solid var(--line)}
+.runtime-label{font:9px var(--mono);letter-spacing:.1em;color:var(--muted)}
+.topbar-runtime strong{font:600 12px var(--mono);font-variant-numeric:tabular-nums;color:var(--accent);white-space:nowrap}
+.topbar-clock{min-width:82px}
+@media(max-width:600px){.topbar-right{gap:10px}.topbar-runtime{padding-right:10px}.topbar-runtime strong{font-size:10px}.runtime-label{font-size:8px}.topbar-clock{min-width:0}.clock{font-size:12px}.date{font-size:9px}}
