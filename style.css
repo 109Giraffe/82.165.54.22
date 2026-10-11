@@ -62,3 +62,7 @@
 .topbar-runtime strong{font:600 12px var(--mono);font-variant-numeric:tabular-nums;color:var(--accent);white-space:nowrap}
 .topbar-clock{min-width:82px}
 @media(max-width:600px){.topbar-right{gap:10px}.topbar-runtime{padding-right:10px}.topbar-runtime strong{font-size:10px}.runtime-label{font-size:8px}.topbar-clock{min-width:0}.clock{font-size:12px}.date{font-size:9px}}
+
+/* Sky_Hex brand logo */
+.brand-mark{width:43px;height:43px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;color:var(--accent)}
+.brand-mark img{display:block;width:100%;height:100%;object-fit:contain;border-radius:7px}
