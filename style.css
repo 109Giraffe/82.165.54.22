@@ -229,3 +229,24 @@
 .discord-join-button:hover{transform:translateY(-1px);background:#4752c4;box-shadow:0 7px 20px #5865f244}
 .discord-join-icon{font-size:17px}
 @media(max-width:800px){.discord-server-banner{height:145px}.discord-server-content{grid-template-columns:74px minmax(0,1fr);gap:13px;padding:0 14px 16px}.discord-server-avatar{width:74px;height:74px;margin-top:-25px;padding:4px;border-radius:19px}.discord-server-avatar img{border-radius:14px}.discord-server-main{padding-top:12px}.discord-server-identity{display:block}.discord-server-title-wrap h2{font-size:17px}.discord-server-subtitle{font-size:11px}.discord-server-badge{margin-top:9px;font-size:8px}.discord-server-description{grid-column:1/-1;margin-top:15px;font-size:11px}.discord-server-footer{grid-column:1/-1;align-items:stretch;flex-direction:column}.discord-join-button{width:100%;padding:12px}.discord-server-access small{font-size:9px}}
+
+
+/* Discord community card deliberately matches the Stormworks/KSP game-detail cards */
+.discord-game-card{padding:0;overflow:hidden;align-self:stretch}
+.discord-game-banner{height:94px;position:relative;overflow:hidden;background:#172d45;border-bottom:1px solid var(--line)}
+.discord-game-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#07111b05,#07111b65);pointer-events:none}
+.discord-game-banner img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+.discord-game-head{padding:13px 15px 15px;margin:0 19px}
+.discord-game-avatar{width:49px;height:49px;flex:0 0 49px;object-fit:cover;border:2px solid #19283b;border-radius:13px;background:#0b1624;box-shadow:0 0 0 1px #526782}
+.discord-game-head>div{min-width:0;flex:1}
+.discord-game-head .eyebrow{font-size:9px}
+.discord-game-head h2{font-size:14px;line-height:1.45;overflow-wrap:anywhere}
+.discord-game-head p:not(.eyebrow){font-size:10px;line-height:1.4}
+.discord-game-label{display:inline-flex;align-items:center;gap:6px;padding:5px 7px;border:1px solid #5865f255;border-radius:5px;background:#5865f21a;color:#b8bdff;font:9px var(--mono);flex-shrink:0}
+.discord-game-label span{width:5px;height:5px;border-radius:50%;background:#818cff}
+.discord-game-card>p{padding:0 19px;margin:0 0 15px;min-height:56px;color:#a9bdce;font-size:12px}
+.discord-game-card .detail-meta{margin:0 19px}
+.discord-game-join{display:flex;align-items:center;justify-content:center;gap:9px;margin:15px 19px 19px;padding:10px 12px;border:1px solid #7a86ff;border-radius:8px;background:#5865f2;color:#fff;font-size:11px;font-weight:650;transition:background .18s ease,transform .18s ease}
+.discord-game-join:hover{background:#4752c4;transform:translateY(-1px)}
+.discord-game-join span:first-child{font-size:16px}
+@media(max-width:800px){.discord-game-banner{height:80px}.discord-game-head{margin:0 13px;padding:12px 0}.discord-game-head h2{font-size:13px}.discord-game-card>p{padding:0 13px}.discord-game-card .detail-meta{margin:0 13px}.discord-game-join{margin:14px 13px 13px}}
