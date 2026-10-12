@@ -102,26 +102,47 @@ function renderPublicStatus() {
   const lastUpdated = document.getElementById("lastUpdated");
   const sideDot = document.querySelector(".side-status .status-dot");
   const uptimeDot = document.querySelector(".uptime-foot .status-dot");
-  [sideDot, uptimeDot].forEach(dot => dot.classList.remove("status-online", "status-offline"));
+  const uptimeRing = document.querySelector(".uptime-ring");
+  const uptimeRingDot = document.querySelector(".uptime-ring span");
+  const statusClasses = ["status-online", "status-partial", "status-offline", "status-unknown"];
+  [sideDot, uptimeDot, uptimeRing, uptimeRingDot].forEach(el => {
+    if (el) el.classList.remove(...statusClasses);
+  });
 
-  if (values.length && values.every(value => value === "online")) {
+  const bothOnline = values.length === 2 && values.every(value => value === "online");
+  const bothOffline = values.length === 2 && values.every(value => value === "offline");
+  const oneOnline = values.length === 2 && values.filter(value => value === "online").length === 1 && values.filter(value => value === "offline").length === 1;
+
+  let overallState = "unknown";
+  if (bothOnline) {
+    overallState = "online";
     overall.textContent = "All monitored online";
     description.textContent = "Both monitored services report online.";
     sideStatus.textContent = "Services online";
-    sideDot.classList.add("status-online");
-    uptimeDot.classList.add("status-online");
-  } else if (values.some(value => value === "offline")) {
-    overall.textContent = "Service issue";
-    description.textContent = "At least one monitored service reports offline.";
-    sideStatus.textContent = "Service issue";
-    sideDot.classList.add("status-offline");
-    uptimeDot.classList.add("status-offline");
+  } else if (oneOnline) {
+    overallState = "partial";
+    overall.textContent = "Partial availability";
+    description.textContent = "One monitored service is online; the other is offline.";
+    sideStatus.textContent = "One service online";
+  } else if (bothOffline) {
+    overallState = "offline";
+    overall.textContent = "All services offline";
+    description.textContent = "Neither monitored service is currently online.";
+    sideStatus.textContent = "All services offline";
   } else {
     overall.textContent = "Status unknown";
     description.textContent = "The live status feed is unavailable or not yet verified.";
     sideStatus.textContent = "Status unknown";
     lastUpdated.textContent = "No fresh status feed";
   }
+
+  const stateClass = overallState === "online" ? "status-online"
+    : overallState === "partial" ? "status-partial"
+    : overallState === "offline" ? "status-offline"
+    : "status-unknown";
+  [sideDot, uptimeDot, uptimeRing, uptimeRingDot].forEach(el => {
+    if (el) el.classList.add(stateClass);
+  });
   if (PUBLIC_STATUS.updatedAt) {
     lastUpdated.textContent = "Status checked " + new Date(PUBLIC_STATUS.updatedAt).toLocaleString();
   }
