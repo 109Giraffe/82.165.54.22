@@ -3,6 +3,8 @@
  * The status feed is read-only and contains only public service states.
  */
 const STATUS_URL = "/status.json";
+const STORMWORKS_PLAYERS_URL = "/players.json";
+const PLAYERS_MAX_AGE_MS = 90_000;
 const STATUS_MAX_AGE_MS = 120_000;
 const PUBLIC_STATUS = {
   updatedAt: null,
@@ -170,6 +172,36 @@ async function fetchPublicStatus() {
   renderPublicStatus();
 }
 
+
+async function fetchStormworksPlayers() {
+  const nameEl = document.getElementById("stormworksServerName");
+  const playersEl = document.getElementById("stormworksPlayerCount");
+  const updatedEl = document.getElementById("stormworksPlayersUpdated");
+  if (!nameEl || !playersEl || !updatedEl) return;
+
+  try {
+    const response = await fetch(STORMWORKS_PLAYERS_URL + "?_=" + Date.now(), { cache: "no-store" });
+    if (!response.ok) throw new Error("Player feed unavailable");
+    const data = await response.json();
+    const timestamp = Date.parse(data.updatedAt);
+    if (!Number.isFinite(timestamp) || Date.now() - timestamp > PLAYERS_MAX_AGE_MS ||
+        timestamp > Date.now() + 30_000 || data.online !== true ||
+        typeof data.serverName !== "string" || !Number.isInteger(data.players) ||
+        !Number.isInteger(data.maxPlayers)) {
+      throw new Error("Player feed stale or invalid");
+    }
+    nameEl.textContent = data.serverName;
+    playersEl.textContent = data.players + " / " + data.maxPlayers;
+    updatedEl.textContent = "Updated " + new Date(data.updatedAt).toLocaleTimeString();
+  } catch {
+    nameEl.textContent = "Unavailable";
+    playersEl.textContent = "—";
+    updatedEl.textContent = "Player count unavailable";
+  }
+}
+
 fetchPublicStatus();
 setInterval(fetchPublicStatus, 30_000);
+fetchStormworksPlayers();
+setInterval(fetchStormworksPlayers, 15_000);
 showPage(location.hash.slice(1) || "home", false);
