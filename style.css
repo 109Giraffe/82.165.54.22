@@ -151,3 +151,27 @@
   .lab-expand-hint{margin-top:9px;padding-top:8px}
   .lab-project .project-subsection{padding:10px}
 }
+
+
+/* Electronics Lab is organised into categories, with each individual build as a card */
+.electronics-category{margin-top:26px}
+.electronics-category .section-heading{margin-top:0}
+.lab-project-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+.lab-project-grid .project-tile{align-self:start}
+.lab-project-pcb-prototype .bruce-phase-prototype{border:0;padding:0;background:transparent}
+.lab-project-pcb-prototype .bruce-phase-heading{display:none}
+.lab-project-pcb-prototype .bruce-prototype-photo{margin-top:0}
+.lab-project-pcb-prototype .bruce-prototype-photo img{max-height:330px}
+.lab-project-pcb .project-subsection{margin:0;padding:13px;border-radius:0;border-width:1px 0 0}
+.lab-project-pcb .bruce-phase-heading{margin-top:4px}
+.lab-project-pcb .bruce-phase-pcb{padding:0;border:0;background:transparent}
+.lab-project-pcb .bruce-phase-pcb>.bruce-phase-heading .bruce-phase-index{display:none}
+.lab-project-pcb .bruce-phase-pcb>.bruce-phase-heading h4{display:none}
+.lab-project-pcb .bruce-phase-pcb>p{font-size:11px}
+.lab-project-pcb .bruce-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:800px){
+  .electronics-category{margin-top:20px}
+  .lab-project-grid{grid-template-columns:1fr;gap:11px}
+  .lab-project-grid .project-tile:last-child{grid-column:auto}
+  .lab-project-pcb .bruce-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
