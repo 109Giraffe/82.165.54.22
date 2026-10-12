@@ -198,3 +198,34 @@
   .pcb-journey-banner p{grid-column:1;grid-row:2;flex-wrap:wrap;font-size:10px}
   .pcb-journey-banner small{margin-top:0}
 }
+
+
+/* Discord-inspired community server profile in the Games section */
+.discord-server-card{margin:0 0 20px;overflow:hidden;border:1px solid #344763;border-radius:16px;background:linear-gradient(145deg,#101b2a,#0a1420 76%);box-shadow:0 14px 35px #0002}
+.discord-server-banner{height:178px;position:relative;overflow:hidden;background:linear-gradient(115deg,#183e5a,#1e716c 55%,#172b43)}
+.discord-server-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#06111b05 30%,#06111bb8 100%);pointer-events:none}
+.discord-server-banner img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 46%}
+.discord-banner-label{position:absolute;right:15px;bottom:13px;z-index:1;padding:5px 9px;border:1px solid #ffffff44;border-radius:6px;background:#07111bbd;color:#e6f0fb;font:9px var(--mono);letter-spacing:.12em}
+.discord-server-content{display:grid;grid-template-columns:106px minmax(0,1fr);gap:20px;padding:0 23px 22px}
+.discord-server-avatar{width:106px;height:106px;position:relative;margin-top:-35px;padding:5px;border:1px solid #47566e;border-radius:25px;background:#101b2a;z-index:2;box-shadow:0 5px 18px #0005}
+.discord-server-avatar img{display:block;width:100%;height:100%;object-fit:cover;border-radius:19px;background:#18263a}
+.discord-server-main{min-width:0;padding-top:17px}
+.discord-server-identity{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
+.discord-kicker{margin:0 0 5px;color:#9bafd0;font:9px var(--mono);letter-spacing:.13em}
+.discord-server-title-wrap h2{margin:0;color:#f3f6fc;font:600 clamp(17px,2vw,23px) var(--mono);letter-spacing:-.035em}
+.discord-server-subtitle{margin:5px 0 0;color:#a6b4c9;font-size:12px}
+.discord-server-badge{display:inline-flex;align-items:center;gap:7px;flex-shrink:0;padding:6px 9px;border:1px solid #315d57;border-radius:6px;background:#0b2927;color:#a9f4dc;font:9px var(--mono);letter-spacing:.05em}
+.discord-online-dot{width:6px;height:6px;background:#38d9a3;border-radius:50%;box-shadow:0 0 8px #38d9a366}
+.discord-server-description{max-width:850px;margin:18px 0 0;color:#b6c5d7;font-size:12px;line-height:1.75}
+.discord-server-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.discord-server-tags span{display:inline-flex;align-items:center;padding:5px 9px;border:1px solid #293f56;border-radius:7px;background:#0b1d2c;color:#b6cee4;font-size:10px}
+.discord-server-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:20px;padding-top:15px;border-top:1px solid #203247}
+.discord-server-access{display:flex;align-items:center;gap:10px;min-width:0}
+.discord-lock-mark{display:grid;place-items:center;width:34px;height:34px;flex-shrink:0;border:1px solid #314965;border-radius:9px;background:#102236;color:#9ed2ff;font-size:20px}
+.discord-server-access strong,.discord-server-access small{display:block}
+.discord-server-access strong{color:#e0eaf6;font-size:11px;font-weight:600}
+.discord-server-access small{margin-top:3px;color:#8ea5bc;font-size:10px}
+.discord-join-button{display:inline-flex;align-items:center;justify-content:center;gap:9px;flex-shrink:0;padding:11px 15px;border:1px solid #7686ff;border-radius:9px;background:#5865f2;color:#fff;font-size:12px;font-weight:650;transition:background .18s ease,transform .18s ease,box-shadow .18s ease}
+.discord-join-button:hover{transform:translateY(-1px);background:#4752c4;box-shadow:0 7px 20px #5865f244}
+.discord-join-icon{font-size:17px}
+@media(max-width:800px){.discord-server-banner{height:145px}.discord-server-content{grid-template-columns:74px minmax(0,1fr);gap:13px;padding:0 14px 16px}.discord-server-avatar{width:74px;height:74px;margin-top:-25px;padding:4px;border-radius:19px}.discord-server-avatar img{border-radius:14px}.discord-server-main{padding-top:12px}.discord-server-identity{display:block}.discord-server-title-wrap h2{font-size:17px}.discord-server-subtitle{font-size:11px}.discord-server-badge{margin-top:9px;font-size:8px}.discord-server-description{grid-column:1/-1;margin-top:15px;font-size:11px}.discord-server-footer{grid-column:1/-1;align-items:stretch;flex-direction:column}.discord-join-button{width:100%;padding:12px}.discord-server-access small{font-size:9px}}
