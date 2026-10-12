@@ -4,6 +4,7 @@
  */
 const STATUS_URL = "/status.json";
 const STORMWORKS_PLAYERS_URL = "/players.json";
+const LUNA_PLAYERS_URL = "/luna_players.json";
 const PLAYERS_MAX_AGE_MS = 90_000;
 const STATUS_MAX_AGE_MS = 120_000;
 const PUBLIC_STATUS = {
@@ -200,8 +201,34 @@ async function fetchStormworksPlayers() {
   }
 }
 
+
+async function fetchLunaPlayers() {
+  const playersEl = document.getElementById("lunaPlayerCount");
+  const updatedEl = document.getElementById("lunaPlayersUpdated");
+  if (!playersEl || !updatedEl) return;
+
+  try {
+    const response = await fetch(LUNA_PLAYERS_URL + "?_=" + Date.now(), { cache: "no-store" });
+    if (!response.ok) throw new Error("Luna player feed unavailable");
+    const data = await response.json();
+    const timestamp = Date.parse(data.updatedAt);
+    if (!Number.isFinite(timestamp) || Date.now() - timestamp > PLAYERS_MAX_AGE_MS ||
+        timestamp > Date.now() + 30_000 || data.online !== true ||
+        !Number.isInteger(data.players) || data.players < 0) {
+      throw new Error("Luna player feed stale or invalid");
+    }
+    playersEl.textContent = String(data.players);
+    updatedEl.textContent = "Updated " + new Date(data.updatedAt).toLocaleTimeString();
+  } catch {
+    playersEl.textContent = "—";
+    updatedEl.textContent = "Player count unavailable";
+  }
+}
+
 fetchPublicStatus();
 setInterval(fetchPublicStatus, 30_000);
 fetchStormworksPlayers();
 setInterval(fetchStormworksPlayers, 15_000);
+fetchLunaPlayers();
+setInterval(fetchLunaPlayers, 15_000);
 showPage(location.hash.slice(1) || "home", false);
