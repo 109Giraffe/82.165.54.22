@@ -99,15 +99,40 @@
       <section class="page" id="page-electronics" data-title="ELECTRONICS">
         <div class="page-heading"><p class="eyebrow">HARDWARE · DESIGN · EXPERIMENTS</p><h1>Electronics <span>lab</span></h1><p>A portfolio for circuit boards, embedded systems, radio experiments and the process behind each build.</p></div>
         <div class="electronics-banner panel"><div><p class="eyebrow">DESIGN · BUILD · TEST</p><h2>From schematic to hardware.</h2><p>Circuit-board design, component selection and practical hardware development.</p></div><div class="circuit-art" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><i>PCB / LAB</i></div></div>
-        <div class="section-heading"><div><p class="eyebrow">PROJECT CATEGORIES</p><h2>Browse the lab</h2></div></div>
-        <div class="tile-grid">
-          <article class="panel project-tile lab-project lab-project-pcb"><div class="tile-art art-pcb">PCB<span>▦</span></div><div class="tile-content"><details class="lab-project-details lab-project-pcb"><summary class="lab-project-summary"><span class="pill">PCB DESIGN</span><h3>Custom circuit boards</h3><p>KiCad schematics, board layouts, connector choices, revisions and assembly notes.</p><div class="tag-list lab-summary-tags"><span>KiCad</span><span>2-layer PCB</span><span>ESP32-S3</span></div><span class="lab-expand-hint"><span class="lab-expand-open">＋ View build log and photos</span><span class="lab-expand-close">－ Hide build log</span></span></summary><div class="project-subsection bruce-project">
-  <section class="bruce-phase bruce-phase-prototype" aria-labelledby="bruce-prototype-title">
+        <div class="electronics-category">
+          <div class="section-heading"><div><p class="eyebrow">01 / PCB DESIGN</p><h2>From prototype to custom board</h2></div><span class="muted small">2 projects</span></div>
+          <div class="tile-grid lab-project-grid">
+            <article class="panel project-tile lab-project lab-project-pcb-prototype">
+              <div class="tile-art art-pcb">PROTOTYPE<span>▦</span></div>
+              <div class="tile-content">
+                <details class="lab-project-details">
+                  <summary class="lab-project-summary">
+                    <span class="pill">EARLY PROTOTYPE</span><h3>Breadboard build</h3>
+                    <p>First-stage experiments with modules, wiring and connections before designing a custom PCB.</p>
+                    <div class="tag-list lab-summary-tags"><span>Breadboard</span><span>Wiring</span><span>Proof of concept</span></div>
+                    <span class="lab-expand-hint"><span class="lab-expand-open">＋ View prototype</span><span class="lab-expand-close">－ Hide prototype</span></span>
+                  </summary>
+                  <div class="lab-project-extra">
+                    <section class="bruce-phase bruce-phase-prototype" aria-labelledby="bruce-prototype-title">
     <div class="bruce-phase-heading"><span class="bruce-phase-index">PHASE 01</span><div><h4 id="bruce-prototype-title">Breadboard prototyping</h4><p>Early experiments with the modules, wiring and connections before moving to a custom PCB.</p></div></div>
     <figure class="bruce-prototype-photo"><a href="assets/20260621_151913.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20260621_151913.webp" alt="Early breadboard prototype of the Bruce electronics project" loading="lazy"></a><figcaption><span>EARLY DEVELOPMENT · 21 JUNE</span><strong>First working prototype</strong><small>Breadboard experiments before the custom PCB design.</small></figcaption></figure>
   </section>
-  <div class="bruce-phase-divider"><span>DESIGN EVOLUTION</span></div>
-  <section class="bruce-phase bruce-phase-pcb" aria-labelledby="bruce-pcb-title">
+                  </div>
+                </details>
+              </div>
+            </article>
+            <article class="panel project-tile lab-project lab-project-pcb">
+              <div class="tile-art art-pcb">PCB V1<span>▦</span></div>
+              <div class="tile-content">
+                <details class="lab-project-details">
+                  <summary class="lab-project-summary">
+                    <span class="pill pill-green">CUSTOM PCB · VERSION 1</span><h3>Bruce modular PCB</h3>
+                    <p>A purpose-designed two-layer KiCad board replacing the breadboard setup with modular ESP32-S3 hardware and JST-connected peripherals.</p>
+                    <div class="tag-list lab-summary-tags"><span>KiCad</span><span>2-layer PCB</span><span>ESP32-S3</span><span>JST</span></div>
+                    <span class="lab-expand-hint"><span class="lab-expand-open">＋ Open build log and photos</span><span class="lab-expand-close">－ Hide build log</span></span>
+                  </summary>
+                  <div class="project-subsection bruce-project">
+                      <section class="bruce-phase bruce-phase-pcb" aria-labelledby="bruce-pcb-title">
   <div class="bruce-phase-heading"><span class="bruce-phase-index">PHASE 02</span><div><span class="pill pill-green">CUSTOM PCB · VERSION 1</span><h4 id="bruce-pcb-title">First custom PCB build</h4><p>Moving from a breadboard prototype to a purpose-designed, modular two-layer board.</p></div></div>
   <p>A custom two-layer PCB designed in KiCad to replace the original breadboard-and-jumper-wire setup with a cleaner, modular layout for a Bruce-based ESP32-S3 device.</p>
   <div class="tag-list"><span>KiCad</span><span>2-layer PCB</span><span>ESP32-S3</span><span>JST connectors</span></div>
@@ -134,11 +159,28 @@
   </div>
   <h5 class="bruce-subheading">Wiring schematic reference</h5>
   <figure class="bruce-schematic"><a href="assets/diy-smoochiee-board.jpg" target="_blank" rel="noopener noreferrer"><img src="assets/diy-smoochiee-board.jpg" alt="Wiring schematic reference for the Bruce device" loading="lazy"></a><figcaption>Reference schematic for the intended device wiring and peripherals.</figcaption></figure>
-  </section>
-</div></details></div></article>
-          <article class="panel project-tile lab-project lab-project-embedded"><div class="tile-art art-embedded">MCU<span>⌘</span></div><div class="tile-content"><details class="lab-project-details"><summary class="lab-project-summary"><span class="pill">EMBEDDED</span><h3>Microcontrollers</h3><p>ESP32, Arduino and other hardware experiments, including firmware and interfaces.</p><div class="tag-list lab-summary-tags"><span>ESP32</span><span>Arduino</span><span>Firmware</span></div><span class="lab-expand-hint"><span class="lab-expand-open">＋ Explore project</span><span class="lab-expand-close">－ Close details</span></span></summary><div class="lab-project-extra"><h4>Embedded hardware & firmware</h4><p>Experiments with microcontroller platforms, firmware behaviour and hardware interfaces. More build notes and individual experiments will be added as they develop.</p></div></details></div></article>
-          <article class="panel project-tile lab-project lab-project-radio"><div class="tile-art art-radio">RF<span>⌁</span></div><div class="tile-content"><details class="lab-project-details"><summary class="lab-project-summary"><span class="pill">RADIO / RF</span><h3>Wireless experiments</h3><p>Radio modules, antennas, telemetry and legal, low-power communications projects.</p><div class="tag-list lab-summary-tags"><span>RF modules</span><span>Antennas</span><span>Telemetry</span></div><span class="lab-expand-hint"><span class="lab-expand-open">＋ Explore project</span><span class="lab-expand-close">－ Close details</span></span></summary><div class="lab-project-extra"><h4>Wireless links & telemetry</h4><p>Exploring radio modules, antenna choices and low-power communications, with an emphasis on understanding the hardware and testing responsibly.</p></div></details></div></article>
+  
+                  </div>
+                </details>
+              </div>
+            </article>
+          </div>
         </div>
+
+        <div class="electronics-category">
+          <div class="section-heading"><div><p class="eyebrow">02 / EMBEDDED SYSTEMS</p><h2>Microcontrollers & firmware</h2></div></div>
+          <div class="tile-grid lab-project-grid">
+            <article class="panel project-tile lab-project lab-project-embedded"><div class="tile-art art-embedded">MCU<span>⌘</span></div><div class="tile-content"><details class="lab-project-details"><summary class="lab-project-summary"><span class="pill">EMBEDDED</span><h3>Microcontroller experiments</h3><p>ESP32, Arduino and other hardware experiments, including firmware, peripherals and interfaces.</p><div class="tag-list lab-summary-tags"><span>ESP32</span><span>Arduino</span><span>Firmware</span></div><span class="lab-expand-hint"><span class="lab-expand-open">＋ Explore project</span><span class="lab-expand-close">－ Close details</span></span></summary><div class="lab-project-extra"><h4>Embedded hardware & firmware</h4><p>Experiments with microcontroller platforms, firmware behaviour and hardware interfaces. More build notes and individual experiments will be added as they develop.</p></div></details></div></article>
+          </div>
+        </div>
+
+        <div class="electronics-category">
+          <div class="section-heading"><div><p class="eyebrow">03 / RADIO FREQUENCY</p><h2>Wireless & telemetry</h2></div></div>
+          <div class="tile-grid lab-project-grid">
+            <article class="panel project-tile lab-project lab-project-radio"><div class="tile-art art-radio">RF<span>⌁</span></div><div class="tile-content"><details class="lab-project-details"><summary class="lab-project-summary"><span class="pill">RADIO / RF</span><h3>Wireless experiments</h3><p>Radio modules, antennas, telemetry and low-power communications projects.</p><div class="tag-list lab-summary-tags"><span>RF modules</span><span>Antennas</span><span>Telemetry</span></div><span class="lab-expand-hint"><span class="lab-expand-open">＋ Explore project</span><span class="lab-expand-close">－ Close details</span></span></summary><div class="lab-project-extra"><h4>Wireless links & telemetry</h4><p>Exploring radio modules, antenna choices and low-power communications, with an emphasis on understanding the hardware and testing responsibly.</p></div></details></div></article>
+          </div>
+        </div>
+
         <div class="notice"><span class="notice-icon">+</span><div><strong>Make it yours</strong><p>Each build brings together design, assembly and testing, with an emphasis on reliable hardware and thoughtful documentation.</p></div></div>
       </section>
 
