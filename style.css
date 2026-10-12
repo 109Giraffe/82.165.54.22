@@ -175,3 +175,26 @@
   .lab-project-grid .project-tile:last-child{grid-column:auto}
   .lab-project-pcb .bruce-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+
+/* Make the breadboard prototype and custom PCB read as one continuous build */
+.pcb-journey-banner{display:grid;grid-template-columns:auto 110px auto;align-items:center;gap:12px;margin:-2px 0 14px;padding:12px 15px;border:1px solid #24566a;border-radius:10px;background:linear-gradient(100deg,#0b2432 0%,#09231f 100%)}
+.pcb-journey-label{font:9px var(--mono);letter-spacing:.08em;color:#9edfff}
+.pcb-journey-track{display:flex;align-items:center;gap:7px}
+.pcb-journey-node{display:grid;place-items:center;width:25px;height:25px;flex:0 0 25px;border:1px solid #2c718c;border-radius:50%;background:#0b2b3a;color:#9edfff;font:10px var(--mono)}
+.pcb-journey-node:last-child{border-color:#247d68;background:#092a24;color:#8af0c5}
+.pcb-journey-line{height:1px;flex:1;background:linear-gradient(90deg,#2c718c,#247d68);position:relative}
+.pcb-journey-line:after{content:"›";position:absolute;right:-1px;top:-10px;color:#65c8b0;font:16px var(--mono)}
+.pcb-journey-banner p{display:flex;align-items:center;gap:8px;margin:0;font-size:11px;color:var(--text)}
+.pcb-journey-banner p span{color:var(--accent);font-size:16px}
+.pcb-journey-banner small{grid-column:1/-1;margin-top:-5px;color:var(--muted);font-size:10px}
+.lab-project-pcb-pair .lab-project-pcb-prototype{border-color:#285f70}
+.lab-project-pcb-pair .lab-project-pcb{border-color:#286452}
+.lab-project-pcb-pair .lab-project-pcb-prototype:after,.lab-project-pcb-pair .lab-project-pcb:after{content:"";display:block;height:3px;background:linear-gradient(90deg,#64bfff,#16e6a0);opacity:.8}
+@media(max-width:800px){
+  .pcb-journey-banner{grid-template-columns:1fr auto;gap:8px 12px;padding:11px 12px}
+  .pcb-journey-label{grid-column:1/-1}
+  .pcb-journey-track{grid-column:2;grid-row:2}
+  .pcb-journey-banner p{grid-column:1;grid-row:2;flex-wrap:wrap;font-size:10px}
+  .pcb-journey-banner small{margin-top:0}
+}
