@@ -270,3 +270,7 @@
 .discord-mark{font-size:19px;line-height:1}
 @media(max-width:1250px){.service-grid .discord-game-card{grid-column:auto}}
 @media(max-width:800px){.discord-game-card{grid-column:auto}.discord-game-banner{height:100px}.discord-profile-body{padding:0 13px 13px}.discord-game-avatar{width:62px;height:62px;margin-top:-33px;border-radius:19px}.discord-profile-title h2{font-size:17px}.discord-profile-subtitle{font-size:11px}.discord-profile-description{font-size:11px;margin:12px 0}.discord-profile-tags{gap:5px;margin-bottom:12px}.discord-profile-tags span{font-size:9px;padding:6px 8px}.discord-game-join{font-size:12px;padding:11px}}
+
+
+/* The service-status indicator is a coloured ring, without a centre dot. */
+.uptime-ring span{display:none}
