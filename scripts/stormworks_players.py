@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Publish Stormworks A2S_INFO details to a separate public JSON file.
-
-Run on the Stormworks VPS. This script only sends a local UDP query to
-127.0.0.1:25565 and writes /var/www/html/players.json; it never touches
-the existing status.json monitor feed.
-"""
+"""Poll the local Stormworks A2S_INFO endpoint and publish /players.json."""
 import json
 import os
 import socket
@@ -20,12 +15,12 @@ INTERVAL_SECONDS = 15
 REQUEST = b"\xff\xff\xff\xffTSource Engine Query\x00"
 
 
-def read_cstring(packet: bytes, offset: int) -> tuple[str, int]:
+def read_cstring(packet, offset):
     end = packet.index(b"\x00", offset)
     return packet[offset:end].decode("utf-8", errors="replace"), end + 1
 
 
-def query_server() -> dict:
+def query_server():
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
         sock.settimeout(3)
         sock.sendto(REQUEST, (HOST, PORT))
@@ -35,38 +30,38 @@ def query_server() -> dict:
         raise ValueError("Unexpected A2S_INFO response")
 
     offset = 6
-    server_name, offset = read_cstring(packet, offset)
+    name, offset = read_cstring(packet, offset)
     map_name, offset = read_cstring(packet, offset)
     folder, offset = read_cstring(packet, offset)
     game, offset = read_cstring(packet, offset)
 
-    # Stormworks' observed response has a two-byte app ID followed by
-    # players, max players and bots. Confirm bounds before reading fields.
+    # The observed Stormworks response has a 2-byte app ID, then
+    # player count, maximum players, and bots. Validate bounds first.
     if offset + 5 > len(packet):
-        raise ValueError("A2S_INFO response ended before player fields")
+        raise ValueError("Response ended before player fields")
     app_id = int.from_bytes(packet[offset:offset + 2], "little")
-    players, max_players, bots = packet[offset + 2:offset + 5]
+    players, maximum, bots = packet[offset + 2:offset + 5]
 
     return {
         "online": True,
-        "serverName": server_name,
+        "serverName": name,
         "players": players,
-        "maxPlayers": max_players,
+        "maxPlayers": maximum,
         "bots": bots,
         "map": map_name,
         "game": game,
-        "version": packet[packet.find(b"\x00", offset + 9) + 1:].split(b"\x00", 1)[0].decode("utf-8", errors="replace") if False else None,
+        "appId": app_id,
         "updatedAt": datetime.now(timezone.utc).isoformat()
     }
 
 
-def write_json(data: dict) -> None:
+def publish(data):
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     fd, temp_path = tempfile.mkstemp(prefix=".players-", suffix=".json", dir=OUTPUT.parent)
     try:
-        with os.fdopen(fd, "w", encoding="utf-8") as file:
-            json.dump(data, file)
-            file.write("\n")
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            json.dump(data, handle)
+            handle.write("\n")
         os.chmod(temp_path, 0o644)
         os.replace(temp_path, OUTPUT)
     finally:
@@ -74,20 +69,20 @@ def write_json(data: dict) -> None:
             os.unlink(temp_path)
 
 
-def main() -> None:
+def main():
     while True:
         try:
             data = query_server()
         except Exception as exc:
             data = {
                 "online": False,
-                "serverName": "TeamAviatorsPrivate",
+                "serverName": None,
                 "players": None,
                 "maxPlayers": None,
                 "error": type(exc).__name__,
                 "updatedAt": datetime.now(timezone.utc).isoformat()
             }
-        write_json(data)
+        publish(data)
         time.sleep(INTERVAL_SECONDS)
 
 
