@@ -270,8 +270,8 @@
 .discord-mark{font-size:19px;line-height:1}
 .discord-card-actions{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:9px;margin-top:0}
 .discord-card-actions .discord-game-join{min-width:0;margin:0;padding:12px 8px;gap:7px}
-.discord-website-link{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 9px;border:1px solid #2b6070;border-radius:10px;background:linear-gradient(100deg,#102a3b,#0c1d2d);color:#bdeeff;font-size:12px;font-weight:700;transition:background .18s ease,transform .18s ease,border-color .18s ease}
-.discord-website-link:hover{background:#12384a;border-color:#4eafcb;transform:translateY(-1px)}
+.discord-website-link{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 9px;border:1px solid #147c62;border-radius:10px;background:linear-gradient(100deg,#0a3c34,#0b302b);color:#7df5c6;font-size:12px;font-weight:700;transition:background .18s ease,transform .18s ease,border-color .18s ease}
+.discord-website-link:hover{background:linear-gradient(100deg,#0d5746,#104238);border-color:#16e6a0;transform:translateY(-1px)}
 @media(max-width:800px){.discord-card-actions{gap:8px}.discord-card-actions .discord-game-join,.discord-website-link{font-size:11px;padding:11px 7px}}
 @media(max-width:1250px){.service-grid .discord-game-card{grid-column:auto}}
 @media(max-width:800px){.discord-game-card{grid-column:auto}.discord-game-banner{height:100px}.discord-profile-body{padding:0 13px 13px}.discord-game-avatar{width:62px;height:62px;margin-top:-33px;border-radius:19px}.discord-profile-title h2{font-size:17px}.discord-profile-subtitle{font-size:11px}.discord-profile-description{font-size:11px;margin:12px 0}.discord-profile-tags{gap:5px;margin-bottom:12px}.discord-profile-tags span{font-size:9px;padding:6px 8px}.discord-game-join{font-size:12px;padding:11px}}
