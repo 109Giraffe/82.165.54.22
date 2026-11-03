@@ -576,3 +576,5 @@ body{background:radial-gradient(ellipse at 78% 8%,#14243b 0,transparent 34%),rad
 .ambient-canvas{z-index:0}
 body>:not(.ambient-canvas):not(.grain):not(.scroll-progress){position:relative;z-index:1}
 .system-hud{z-index:1001}.scroll-progress{z-index:1200}.command-palette{z-index:1500}.floating-top{z-index:900}
+
+.site-header{position:sticky}
