@@ -232,3 +232,52 @@ setInterval(fetchStormworksPlayers, 15_000);
 fetchLunaPlayers();
 setInterval(fetchLunaPlayers, 15_000);
 showPage(location.hash.slice(1) || "home", false);
+
+
+/* Studio interactions: staggered reveals, restrained pointer lighting and card depth. */
+(() => {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  const revealSelector = ".section-heading,.overview-grid>.panel,.feature-card,.page-heading,.game-detail,.electronics-banner,.electronics-category,.project-row,.about-grid>.panel,.notice";
+  const revealItems = [...document.querySelectorAll(revealSelector)];
+  if ("IntersectionObserver" in window) {
+    document.documentElement.classList.add("reveal-ready");
+    revealItems.forEach((item, index) => {
+      item.classList.add("reveal-item");
+      item.style.transitionDelay = (index % 4) * 65 + "ms";
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -35px 0px" });
+    revealItems.forEach(item => observer.observe(item));
+  }
+
+  // Gentle pointer tilt on large feature cards only; no movement on touch screens.
+  if (window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
+    document.querySelectorAll(".feature-card").forEach(card => {
+      card.addEventListener("pointermove", event => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        card.style.transform = `perspective(900px) rotateX(${(0.5-y)*3}deg) rotateY(${(x-0.5)*3}deg) translateY(-4px)`;
+      });
+      card.addEventListener("pointerleave", () => { card.style.transform = ""; });
+    });
+  }
+
+  // A soft ambient highlight follows the pointer without intercepting input.
+  let frame = 0;
+  window.addEventListener("pointermove", event => {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      document.documentElement.style.setProperty("--pointer-x", event.clientX + "px");
+      document.documentElement.style.setProperty("--pointer-y", event.clientY + "px");
+      frame = 0;
+    });
+  }, { passive: true });
+})();
