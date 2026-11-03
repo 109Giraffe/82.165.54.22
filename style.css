@@ -244,3 +244,21 @@
     width: 88%;
   }
 }
+
+
+/* Plain-text contact address: clear, readable and deliberately not clickable. */
+.contact-email {
+  display: block;
+  max-width: 100%;
+  color: #8feeff;
+  font: 600 clamp(16px, 2vw, 22px)/1.4 var(--mono);
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+@media (max-width: 760px) {
+  .contact-email {
+    text-align: left;
+    font-size: clamp(14px, 3.5vw, 18px);
+  }
+}
