@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f2efe8">
-  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#070b12">
+  <meta name="color-scheme" content="dark">
   <meta name="description" content="Sky_Hex — an independent engineering portfolio covering electronics, aviation, self-hosted infrastructure and game servers.">
   <meta property="og:title" content="Sky_Hex — Independent Systems">
   <meta property="og:description" content="Ideas, engineered. Electronics, infrastructure and projects built from curiosity.">
@@ -21,6 +21,9 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="grain" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
+  <div class="system-hud" aria-label="Local system display"><span><i class="hud-dot"></i> SKY_HEX / SYSTEMS LAB</span><span id="localClock">--:--:-- UTC</span><button class="command-trigger" id="openCommand" type="button">COMMAND <kbd>CTRL K</kbd></button></div>
   <header class="site-header">
     <a class="brand" href="#home" aria-label="Sky Hex home">
       <span class="brand-symbol"><img src="assets/Logo.png" alt=""></span>
@@ -208,6 +211,9 @@
     </section>
   </main>
 
+  <section class="command-palette" id="commandPalette" aria-hidden="true" aria-label="Site command palette"><div class="command-backdrop" data-close-command></div><div class="command-window" role="dialog" aria-modal="true" aria-labelledby="commandTitle"><div class="command-top"><span id="commandTitle">SYSTEM COMMAND</span><button type="button" id="closeCommand" aria-label="Close command palette">ESC</button></div><label class="command-search"><span>⌕</span><input id="commandInput" type="search" placeholder="Search projects, sections, systems…" autocomplete="off"><kbd>ENTER</kbd></label><div class="command-results" id="commandResults"><button type="button" data-target="#work"><span>01</span><b>Explore selected work</b><small>PROJECTS</small></button><button type="button" data-target="#lab"><span>02</span><b>Open electronics lab</b><small>HARDWARE</small></button><button type="button" data-target="#servers"><span>03</span><b>View live services</b><small>INFRASTRUCTURE</small></button><button type="button" data-target="#about"><span>04</span><b>About Sky_Hex</b><small>PROFILE</small></button></div><div class="command-foot"><span>↑ ↓ NAVIGATE</span><span>↵ OPEN DESTINATION</span><span>ESC CLOSE</span></div></div></section>
+
   <footer class="site-footer"><div class="section-wrap footer-inner"><a class="footer-brand" href="#home">SKY<span>_</span>HEX</a><p>“It's not much, but it's mine.”</p><span>© <span id="year"></span> SKY_HEX · PUBLIC PORTAL</span><a href="#home" class="back-top">BACK TO TOP ↑</a></div></footer>
+  <a class="floating-top" id="floatingTop" href="#home" aria-label="Back to top">↑</a>
 </body>
 </html>
