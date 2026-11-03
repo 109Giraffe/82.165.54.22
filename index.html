@@ -3,226 +3,211 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090e17">
-  <meta name="color-scheme" content="dark">
-  <meta name="description" content="Sky_Hex — game servers, electronics, and engineering projects.">
-  <title>Sky_Hex — Independent Systems & Engineering</title>
-  <meta property="og:title" content="Sky_Hex — Independent Systems & Engineering">
-  <meta property="og:description" content="A personal hub for multiplayer servers, electronics and engineering projects.">
+  <meta name="theme-color" content="#f2efe8">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Sky_Hex — an independent engineering portfolio covering electronics, aviation, self-hosted infrastructure and game servers.">
+  <meta property="og:title" content="Sky_Hex — Independent Systems">
+  <meta property="og:description" content="Ideas, engineered. Electronics, infrastructure and projects built from curiosity.">
   <meta property="og:type" content="website">
+  <title>Sky_Hex — Independent Systems</title>
   <link rel="icon" type="image/png" href="assets/Logo.png">
   <link rel="apple-touch-icon" href="assets/Logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="site-shell">
-    <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#home" data-page="home" aria-label="Sky Hex home">
-        <span class="brand-mark"><img src="assets/Logo.png" alt="" aria-hidden="true"></span>
-        <span><strong>SKY_HEX</strong><small>Servers · Projects · More</small></span>
-      </a>
-      <button class="mobile-menu" id="menuToggle" aria-expanded="false" aria-controls="primaryNav">☰ <span>Menu</span></button>
-      <nav class="nav" id="primaryNav" aria-label="Main navigation">
-        <a href="#home" class="nav-link active" data-page="home"><span class="nav-icon">⌂</span>Home</a>
-        <a href="#games" class="nav-link" data-page="games"><span class="nav-icon">▣</span>Games</a>
-        <a href="#electronics" class="nav-link" data-page="electronics"><span class="nav-icon">⌘</span>Electronics</a>
-        <a href="#projects" class="nav-link" data-page="projects"><span class="nav-icon">◇</span>Projects</a>
-        <a href="#about" class="nav-link" data-page="about"><span class="nav-icon">ⓘ</span>About</a>
-      </nav>
-      <div class="sidebar-bottom">
-        <div class="side-note"><span class="cube">⬡</span><p>Built for fun.<br>Hosted on a VPS.<br>Managed by me.</p></div>
-        <div class="side-status"><span class="status-dot status-unknown"></span><span id="sideStatus">Status not connected</span></div>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Sky Hex home">
+      <span class="brand-symbol"><img src="assets/Logo.png" alt=""></span>
+      <span class="brand-name">SKY<span>_</span>HEX</span>
+      <span class="brand-divider"></span>
+      <span class="brand-caption">INDEPENDENT SYSTEMS</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation"><span></span><span></span></button>
+    <nav class="main-nav" id="primaryNav" aria-label="Main navigation">
+      <a href="#work">Work</a><a href="#lab">Electronics</a><a href="#servers">Servers</a><a href="#about">About</a>
+      <a class="nav-contact" href="mailto:Sky_Hex@wearehackerone.com">Get in touch <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section-wrap" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> PERSONAL ENGINEERING PORTFOLIO <span class="eyebrow-index">EST. 2026</span></p>
+        <h1>Ideas,<br><span class="headline-outline">engineered.</span></h1>
+        <p class="hero-intro">A home for the things I build, break, rebuild and learn from. Electronics, infrastructure, aviation and experiments — made real, one project at a time.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#work">Explore the work <span>↓</span></a>
+          <a class="text-link" href="https://github.com/109Giraffe" target="_blank" rel="noopener noreferrer">Find me on GitHub <span>↗</span></a>
+        </div>
+        <div class="hero-footnote"><span class="live-mark"></span> BUILT INDEPENDENTLY · HOSTED ON MY OWN INFRASTRUCTURE</div>
       </div>
-    </aside>
+      <div class="hero-art" aria-label="Photograph of the custom Bruce electronics PCB">
+        <div class="art-frame art-frame-back"></div>
+        <div class="art-frame art-frame-front">
+          <img src="assets/20261005_164000.webp" alt="Custom Bruce PCB with peripheral modules connected for testing">
+          <span class="image-index">FIG. 01 / HARDWARE IN PROGRESS</span>
+        </div>
+        <div class="hero-stamp"><span>DESIGN</span><b>×</b><span>BUILD</span><b>×</b><span>TEST</span></div>
+        <div class="hero-coordinate">54°36' N<br>05°55' W</div>
+        <div class="hero-art-note">A WORKBENCH, NOT A SHOWROOM.</div>
+      </div>
+      <div class="hero-scroll"><span>SCROLL TO EXPLORE</span><i></i></div>
+    </section>
 
-    <main id="main" class="main">
-      <header class="topbar">
-        <div class="crumb"><span class="eyebrow">PUBLIC PORTAL</span><span class="crumb-sep">/</span><span id="currentSection">HOME</span></div>
-        <div class="topbar-right"><div class="topbar-runtime"><span class="runtime-label">SITE UPTIME</span><strong id="siteUptime" aria-live="off">Calculating…</strong></div><div class="topbar-clock"><span class="clock" id="clock">--:--:--</span><span class="date" id="dateText">Local time</span></div></div>
-      </header>
+    <section class="ticker" aria-label="Areas of interest">
+      <div class="ticker-track"><span>ELECTRONICS</span><b>✳</b><span>ENGINEERING</span><b>✳</b><span>INFRASTRUCTURE</span><b>✳</b><span>AVIATION</span><b>✳</b><span>EXPERIMENTATION</span><b>✳</b><span>ELECTRONICS</span><b>✳</b><span>ENGINEERING</span><b>✳</b><span>INFRASTRUCTURE</span><b>✳</b><span>AVIATION</span><b>✳</b><span>EXPERIMENTATION</span><b>✳</b></div>
+    </section>
 
-      <section class="page active" id="page-home" data-title="HOME">
-        <div class="hero">
-          <div class="hero-grid" aria-hidden="true"></div>
-          <div class="hero-content">
-            <p class="eyebrow">INDEPENDENT HOSTING · PERSONAL PROJECTS</p>
-            <h1>Welcome to <span>Sky_Hex</span></h1>
-            <p class="hero-copy">A personal hub for multiplayer servers, electronics, and hands-on engineering projects.</p>
-            <div class="hero-actions"><a class="button button-primary" href="#projects" data-page="projects">Explore projects <span>↗</span></a><a class="button button-ghost" href="#games" data-page="games">View game servers</a></div>
-          </div>
-          <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
-          <div class="hero-label"><span class="status-dot status-unknown"></span> PUBLIC STATUS PORTAL</div>
+    <section class="intro-strip section-wrap">
+      <div class="section-number">00 / THE APPROACH</div>
+      <p>Curiosity is the starting point.<br><strong>Making it work is the point.</strong></p>
+      <div class="intro-aside">No agency. No big team.<br>Just ideas, tools and persistence.</div>
+    </section>
+
+    <section class="work-section section-wrap" id="work">
+      <div class="section-heading">
+        <div><p class="eyebrow"><span class="eyebrow-line"></span> SELECTED WORK / 01</p><h2>Built, running<br><span>or in progress.</span></h2></div>
+        <p class="section-description">A collection of practical builds and systems. Some are finished, some are still evolving — all of them teach me something.</p>
+      </div>
+
+      <article class="featured-project">
+        <div class="featured-visual">
+          <img src="assets/20261005_164000.webp" alt="Bruce custom PCB with connected modules" loading="lazy">
+          <span class="visual-tag">01 — HARDWARE / PCB</span>
+          <span class="visual-crosshair" aria-hidden="true">+</span>
+        </div>
+        <div class="featured-info">
+          <div class="project-meta"><span>FEATURED PROJECT</span><span class="status-chip"><i></i> IN PROGRESS</span></div>
+          <h3>Custom Bruce<br>Device.</h3>
+          <p>A purpose-built two-layer PCB for a Bruce-based ESP32-S3 device, designed in KiCad to replace a breadboard-and-jumper-wire prototype with a cleaner, modular layout.</p>
+          <p>The board brings together JST-connected peripherals and modules including CC1101, nRF24L01 PA/LNA, PN532 NFC, microSD, GPS, display and IR hardware.</p>
+          <p>The build has progressed through schematic and board layout, PCB manufacture, through-hole assembly and initial electrical checks. Modules are now connected for testing; physical buttons and final integration are still to come.</p>
+          <div class="tag-list"><span>KiCad</span><span>2-layer PCB</span><span>ESP32-S3</span><span>JST connectors</span><span>Assembly & testing</span></div>
+          <a class="arrow-link" href="#lab">Explore the build log <span>↗</span></a>
+        </div>
+      </article>
+
+      <div class="project-grid">
+        <article class="project-card project-card-blue">
+          <div class="project-card-top"><span>02 / INFRASTRUCTURE</span><span class="card-symbol">⌘</span></div>
+          <div class="project-card-art server-art" aria-hidden="true"><div class="server-stack"><i></i><i></i><i></i></div><div class="server-orbit"></div><span>SELF-HOSTED / LINUX</span></div>
+          <div class="project-card-content"><span class="project-status-label">ONGOING</span><h3>Game servers &<br>service monitoring.</h3><p>Running multiplayer services on a Linux VPS, including Stormworks and the KSP Luna Multiplayer server, alongside this self-maintained Sky_Hex website.</p><p>This project covers Linux administration, service startup and recovery, networking and firewall configuration, Apache hosting, and a monitoring dashboard that reports public service availability.</p><div class="tag-list"><span>Linux / Ubuntu</span><span>VPS</span><span>Apache</span><span>Monitoring</span><span>Networking</span></div><a class="arrow-link" href="#servers">See live services <span>↗</span></a></div>
+        </article>
+        <article class="project-card project-card-orange">
+          <div class="project-card-top"><span>03 / AEROSPACE</span><span class="card-symbol">↗</span></div>
+          <div class="project-card-art flight-art" aria-hidden="true"><div class="flight-cross"></div><div class="flight-line"></div><span>VTOL / AUTONOMY / TDI</span></div>
+          <div class="project-card-content"><span class="project-status-label project-status-soon">COMING SOON</span><h3>Autonomous<br>VTOL UAV.</h3><p>A new aerospace engineering challenge: a vertical-take-off-and-landing unmanned aerial vehicle designed around autonomous flight.</p><p>The ambition is to bring airframe design, embedded electronics, sensing, flight-control logic and systems integration into one coherent competition build.</p><p class="small-note">An early teaser — not a claim that the aircraft is already built or flight-tested. More details will follow as the project takes shape.</p><div class="tag-list"><span>Autonomy</span><span>VTOL</span><span>Avionics</span><span>Embedded systems</span><span>Aerospace</span></div></div>
+        </article>
+      </div>
+
+      <div class="documentation-band"><div class="doc-icon">✳</div><div><span class="eyebrow">04 / DOCUMENTATION</span><h3>Build notes & experiments.</h3><p>Recording design decisions, test results and lessons learned across technical projects, from early prototypes through to assembly and validation.</p></div><span class="doc-label">RESEARCH · TESTING · WRITE-UPS</span></div>
+    </section>
+
+    <section class="lab-section" id="lab">
+      <div class="section-wrap">
+        <div class="section-heading lab-heading">
+          <div><p class="eyebrow"><span class="eyebrow-line"></span> THE WORKBENCH / 02</p><h2>Electronics,<br><span>without the mystery.</span></h2></div>
+          <p class="section-description">From first wires on a breadboard to a manufactured circuit board. The lab is where ideas become hardware — and where the process matters as much as the result.</p>
+        </div>
+        <div class="lab-banner"><div><span class="eyebrow">DESIGN → BUILD → TEST</span><h3>From schematic<br>to something real.</h3><p>Circuit-board design, component selection and practical hardware development.</p></div><div class="lab-circuit" aria-hidden="true"><span class="chip chip-main">ESP32-S3</span><span class="chip chip-a">RF</span><span class="chip chip-b">NFC</span><span class="chip chip-c">GPS</span><i></i><i></i><i></i></div></div>
+
+        <div class="build-header"><div><span class="eyebrow">01 / PCB DESIGN</span><h3>One build. Two stages.</h3></div><p>The custom board is the next stage of the same Bruce device project.</p></div>
+        <div class="build-timeline">
+          <article class="build-stage">
+            <div class="stage-top"><span>PHASE 01</span><span>PROTOTYPE</span></div>
+            <h4>Breadboard build</h4>
+            <p>First-stage experiments with modules, wiring and connections before designing a custom PCB.</p>
+            <a class="photo-link" href="assets/20260621_151913.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20260621_151913.webp" alt="Early breadboard prototype of the Bruce electronics project" loading="lazy"><span>VIEW ORIGINAL ↗</span></a>
+            <div class="tag-list"><span>Breadboard</span><span>Wiring</span><span>Proof of concept</span></div>
+            <p class="stage-caption">EARLY DEVELOPMENT · 21 JUNE<br><strong>First working prototype</strong></p>
+          </article>
+          <article class="build-stage build-stage-active">
+            <div class="stage-top"><span>PHASE 02</span><span>CUSTOM PCB · V1</span></div>
+            <h4>Bruce modular PCB</h4>
+            <p>A purpose-designed two-layer KiCad board replacing the breadboard setup with modular ESP32-S3 hardware and JST-connected peripherals.</p>
+            <a class="photo-link" href="assets/20260928_154342.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20260928_154342.webp" alt="Manufactured bare Bruce PCB" loading="lazy"><span>VIEW ORIGINAL ↗</span></a>
+            <div class="tag-list"><span>KiCad</span><span>2-layer PCB</span><span>ESP32-S3</span><span>JST</span></div>
+            <p class="stage-caption">CUSTOM HARDWARE · VERSION 1<br><strong>From layout to manufactured board</strong></p>
+          </article>
         </div>
 
-        <div class="section-heading"><div><p class="eyebrow">OVERVIEW</p><h2>At a glance</h2></div><span class="muted small">Live service overview</span></div>
-        <div class="overview-grid">
-          <article class="panel summary-card">
-            <div class="panel-title"><span class="title-icon">◉</span><div><h3>Game servers</h3><p>Availability overview</p></div><span class="pill pill-neutral">Live feed</span></div>
-            <div class="mini-service"><span class="game-icon storm">S</span><div class="service-info"><strong>Stormworks</strong><small>Build and Rescue</small></div><span class="status-label" data-service="stormworks">Check status</span></div>
-
-            <div class="mini-service"><span class="game-icon ksp">K</span><div class="service-info"><strong>KSP · DMP</strong><small>Luna multiplayer</small></div><span class="status-label" data-service="ksp">Check status</span></div>
-            <a class="panel-link" href="#games" data-page="games">Server details <span>→</span></a>
-          </article>
-
-          <article class="panel uptime-card">
-            <div class="panel-title"><span class="title-icon">◷</span><div><h3>Service status</h3><p>Public availability only</p></div></div>
-            <div class="uptime-display"><div class="uptime-ring" aria-label="Combined service status"></div><div><strong id="overallStatus">Not connected</strong><p id="overallDescription">Waiting for the live status feed.</p></div></div>
-            <div class="uptime-foot"><span class="status-dot status-unknown"></span><span id="lastUpdated">No live status feed</span></div>
-            
-            <p class="privacy-note">Public service availability, without the behind-the-scenes details.</p>
-          </article>
-
-          <article class="panel links-card">
-            <div class="panel-title"><span class="title-icon">↗</span><div><h3>Quick links</h3><p>Find your way around</p></div></div>
-            <a class="quick-link" href="#electronics" data-page="electronics"><span class="quick-icon">⌘</span><span><strong>Electronics & PCB</strong><small>Hardware and design notes</small></span><span class="arrow">›</span></a>
-            <a class="quick-link" href="#projects" data-page="projects"><span class="quick-icon">◇</span><span><strong>Projects</strong><small>Things in progress</small></span><span class="arrow">›</span></a>
-            <a class="quick-link" href="https://github.com/109Giraffe" target="_blank" rel="noopener noreferrer"><span class="quick-icon">GH</span><span><strong>GitHub</strong><small>Code and repositories</small></span><span class="arrow">↗</span></a>
-          </article>
-        </div>
-
-        <div class="section-heading"><div><p class="eyebrow">CURRENT INTERESTS</p><h2>Things I'm into</h2></div></div>
-        <div class="feature-grid">
-          <a class="feature-card feature-electronics" href="#electronics" data-page="electronics"><div class="feature-symbol">⌘</div><span class="feature-kicker">01 / HARDWARE</span><h3>Electronics lab</h3><p>PCBs, embedded systems, radio projects and practical experimentation.</p><span class="feature-cta">Browse electronics <b>↗</b></span></a>
-          <a class="feature-card feature-projects" href="#projects" data-page="projects"><div class="feature-symbol">◇</div><span class="feature-kicker">02 / BUILD LOG</span><h3>Projects</h3><p>A home for builds, prototypes, experiments and lessons learned.</p><span class="feature-cta">Explore projects <b>↗</b></span></a>
-          <a class="feature-card feature-games" href="#games" data-page="games"><div class="feature-symbol">▣</div><span class="feature-kicker">03 / COMMUNITY</span><h3>Game servers</h3><p>Multiplayer worlds hosted and maintained for friends.</p><span class="feature-cta">Server information <b>↗</b></span></a>
-        </div>
-      </section>
-
-      <section class="page" id="page-games" data-title="GAMES">
-        <div class="page-heading"><p class="eyebrow">MULTIPLAYER · COMMUNITY</p><h1>Game <span>servers</span></h1><p>Current service availability and an overview of the multiplayer projects.</p></div>
-        <div class="service-grid">
-          <article class="panel game-detail"><div class="game-detail-head"><span class="game-icon storm large">S</span><div><p class="eyebrow">SANDBOX / VEHICLES</p><h2>Stormworks</h2><p>Build and Rescue</p></div><span class="status-label" data-service="stormworks">Check status</span></div><p>A multiplayer world for building, testing and operating creations.</p><div class="detail-meta"><span>PUBLIC STATUS</span><strong>Invite Only</strong></div><div class="detail-meta"><span>SERVER NAME</span><strong id="stormworksServerName">Loading…</strong></div><div class="detail-meta"><span>PLAYERS ONLINE</span><strong id="stormworksPlayerCount">—</strong></div><div class="detail-meta"><span>PLAYER FEED</span><strong id="stormworksPlayersUpdated">Waiting for data</strong></div><div class="detail-meta"><span>CONNECTION DETAILS</span><strong>Not released to the public</strong></div></article>
-
-          <article class="panel game-detail"><div class="game-detail-head"><span class="game-icon ksp large">K</span><div><p class="eyebrow">SPACE / MULTIPLAYER</p><h2>Kerbal Space Program</h2><p>Luna Multiplayer</p></div><span class="status-label" data-service="ksp">Check status</span></div><p>A shared spaceflight sandbox for collaborative missions and engineering experiments.</p><div class="detail-meta"><span>PUBLIC STATUS</span><strong>Apply to join</strong></div><div class="detail-meta"><span>PLAYERS ONLINE</span><strong id="lunaPlayerCount">—</strong></div><div class="detail-meta"><span>PLAYER FEED</span><strong id="lunaPlayersUpdated">Waiting for data</strong></div><div class="detail-meta"><span>CONNECTION DETAILS</span><strong>Released once accepted</strong></div></article>
-
-          <article class="panel game-detail discord-game-card">
-            <div class="discord-game-banner"><img src="assets/Screenshot%202024-11-23%20220731.png" alt="Aviators Chasing Team storm-chasing banner" loading="lazy"></div>
-            <div class="discord-profile-body">
-              <img class="discord-game-avatar" src="assets/Aviators%20Chasing%20Team%20logo%20design.png" alt="Aviators Chasing Team logo" loading="lazy">
-              <div class="discord-profile-title">
-                <h2>Aviators Chasing Team <span class="discord-verified" aria-label="Community">✓</span></h2>
-                <p class="discord-profile-subtitle">Aviation-themed storm chasing community</p>
-              </div>
-              <p class="discord-profile-description">Join our aviation and storm-chasing community to get access to our multiplayer game servers. Meet other enthusiasts, share your experiences and stay up to date with server news and events.</p>
-              <div class="discord-profile-tags"><span>Aviation</span><span>Storm chasing</span><span>Game servers</span><span>Community</span></div>
-              <div class="discord-card-actions">
-                <a class="discord-game-join" href="https://discord.gg/yEB6D96JBm" target="_blank" rel="noopener noreferrer"><span class="discord-mark" aria-hidden="true">◉</span> Join Discord <span aria-hidden="true">↗</span></a>
-                <a class="discord-website-link" href="https://teamaviators.co.uk" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> Website</a>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="notice"><span class="notice-icon">i</span><div><strong>About server status</strong><p>Status updates are based on the host's monitoring checks. Connection details are shared directly with invited players.</p></div></div>
-      </section>
-
-      <section class="page" id="page-electronics" data-title="ELECTRONICS">
-        <div class="page-heading"><p class="eyebrow">HARDWARE · DESIGN · EXPERIMENTS</p><h1>Electronics <span>lab</span></h1><p>A portfolio for circuit boards, embedded systems, radio experiments and the process behind each build.</p></div>
-        <div class="electronics-banner panel"><div><p class="eyebrow">DESIGN · BUILD · TEST</p><h2>From schematic to hardware.</h2><p>Circuit-board design, component selection and practical hardware development.</p></div><div class="circuit-art" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><i>PCB / LAB</i></div></div>
-        <div class="electronics-category">
-          <div class="section-heading"><div><p class="eyebrow">01 / PCB DESIGN</p><h2>From prototype to custom board</h2></div><span class="muted small">2 projects</span></div>
-          <div class="pcb-journey-banner"><span class="pcb-journey-label">ONE BUILD · TWO STAGES</span><div class="pcb-journey-track"><span class="pcb-journey-node">01</span><span class="pcb-journey-line"></span><span class="pcb-journey-node">02</span></div><p><strong>Breadboard prototype</strong><span>→</span><strong>Custom Bruce PCB</strong></p><small>The custom board is the next stage of the same Bruce device project.</small></div>
-          <div class="tile-grid lab-project-grid lab-project-pcb-pair">
-            <article class="panel project-tile lab-project lab-project-pcb-prototype">
-              <div class="tile-art art-pcb">PROTOTYPE<span>▦</span></div>
-              <div class="tile-content">
-                <details class="lab-project-details">
-                  <summary class="lab-project-summary">
-                    <span class="pill">PHASE 01 · PROTOTYPE</span><h3>Breadboard build</h3>
-                    <p>First-stage experiments with modules, wiring and connections before designing a custom PCB.</p>
-                    <div class="tag-list lab-summary-tags"><span>Breadboard</span><span>Wiring</span><span>Proof of concept</span></div>
-                    <span class="lab-expand-hint"><span class="lab-expand-open">＋ View prototype</span><span class="lab-expand-close">－ Hide prototype</span></span>
-                  </summary>
-                  <div class="lab-project-extra">
-                    <section class="bruce-phase bruce-phase-prototype" aria-labelledby="bruce-prototype-title">
-    <div class="bruce-phase-heading"><span class="bruce-phase-index">PHASE 01</span><div><h4 id="bruce-prototype-title">Breadboard prototyping</h4><p>Early experiments with the modules, wiring and connections before moving to a custom PCB.</p></div></div>
-    <figure class="bruce-prototype-photo"><a href="assets/20260621_151913.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20260621_151913.webp" alt="Early breadboard prototype of the Bruce electronics project" loading="lazy"></a><figcaption><span>EARLY DEVELOPMENT · 21 JUNE</span><strong>First working prototype</strong><small>Breadboard experiments before the custom PCB design.</small></figcaption></figure>
-  </section>
-                  </div>
-                </details>
-              </div>
-            </article>
-            <article class="panel project-tile lab-project lab-project-pcb">
-              <div class="tile-art art-pcb">PCB V1<span>▦</span></div>
-              <div class="tile-content">
-                <details class="lab-project-details">
-                  <summary class="lab-project-summary">
-                    <span class="pill pill-green">PHASE 02 · CUSTOM PCB V1</span><h3>Bruce modular PCB</h3>
-                    <p>A purpose-designed two-layer KiCad board replacing the breadboard setup with modular ESP32-S3 hardware and JST-connected peripherals.</p>
-                    <div class="tag-list lab-summary-tags"><span>KiCad</span><span>2-layer PCB</span><span>ESP32-S3</span><span>JST</span></div>
-                    <span class="lab-expand-hint"><span class="lab-expand-open">＋ Open build log and photos</span><span class="lab-expand-close">－ Hide build log</span></span>
-                  </summary>
-                  <div class="project-subsection bruce-project">
-                      <section class="bruce-phase bruce-phase-pcb" aria-labelledby="bruce-pcb-title">
-  <div class="bruce-phase-heading"><span class="bruce-phase-index">PHASE 02</span><div><span class="pill pill-green">CUSTOM PCB · VERSION 1</span><h4 id="bruce-pcb-title">First custom PCB build</h4><p>Moving from a breadboard prototype to a purpose-designed, modular two-layer board.</p></div></div>
-  <p>A custom two-layer PCB designed in KiCad to replace the original breadboard-and-jumper-wire setup with a cleaner, modular layout for a Bruce-based ESP32-S3 device.</p>
-  <div class="tag-list"><span>KiCad</span><span>2-layer PCB</span><span>ESP32-S3</span><span>JST connectors</span></div>
-  <div class="bruce-progress"><span class="status-dot status-online"></span><span><strong>Current stage:</strong> board assembled and modules connected for testing; buttons and final integration still to come.</span></div>
-  <h5 class="bruce-subheading">Build log</h5>
-  <div class="bruce-stage-list">
-    <div class="bruce-stage"><span class="stage-number">01</span><div><strong>PCB layout in KiCad</strong><p>Routed the board around the ESP32-S3 module, peripheral connectors, passive components and power connections. The board carries its project label and version on the silkscreen.</p></div></div>
-    <div class="bruce-stage"><span class="stage-number">02</span><div><strong>Manufactured bare PCB</strong><p>The green two-layer board arrived with component outlines, labels and through-hole pads ready for assembly.</p></div></div>
-    <div class="bruce-stage"><span class="stage-number">03</span><div><strong>Through-hole assembly</strong><p>Soldered the resistors, capacitors, headers and JST connectors onto the board, leaving the main ESP32-S3 module position ready to accept the development board.</p></div></div>
-    <div class="bruce-stage"><span class="stage-number">04</span><div><strong>Modules connected for testing</strong><p>The ESP32-S3 and peripheral modules have been connected to the assembled PCB for initial testing. Physical buttons and the remaining integration work are still pending.</p></div></div>
-  </div>
-  <h5 class="bruce-subheading">Hardware shown in the wiring schematic</h5>
-  <div class="bruce-hardware-grid">
-    <span>ESP32-S3</span><span>Display</span><span>CC1101</span><span>nRF24L01 PA/LNA</span><span>PN532 NFC</span><span>MicroSD reader</span><span>IR input / output</span><span>GPS module</span>
-  </div>
-  <p class="bruce-note">The supplied schematic is the wiring reference for the intended hardware. The current test photo shows the modules connected; the build is still in progress, so this is not presented as a finished device.</p>
-  <div class="bruce-gallery" aria-label="Bruce PCB project photo stages">
-    <figure class="bruce-photo"><a href="assets/20260918_215106.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20260918_215106.webp" alt="Bruce PCB design stage" loading="lazy"></a><figcaption><span>STAGE 01 · PCB DESIGN</span><strong>Board design</strong><small>KiCad design stage · 18 September</small></figcaption></figure>
-    <figure class="bruce-photo"><a href="assets/20260928_154342.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20260928_154342.webp" alt="Manufactured bare Bruce PCB" loading="lazy"></a><figcaption><span>STAGE 02 · BARE PCB</span><strong>Manufactured board</strong><small>Clean bare PCB · 28 September</small></figcaption></figure>
-    <figure class="bruce-photo"><a href="assets/20260928_154349.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20260928_154349.webp" alt="Second view of the bare Bruce PCB" loading="lazy"></a><figcaption><span>STAGE 02 · BARE PCB</span><strong>Board detail</strong><small>Second view of the manufactured PCB</small></figcaption></figure>
-    <figure class="bruce-photo"><a href="assets/20261005_150316.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20261005_150316.webp" alt="Bruce PCB assembled without buttons or peripheral modules" loading="lazy"></a><figcaption><span>STAGE 03 · ASSEMBLY</span><strong>Assembly and multimeter checks</strong><small>Before buttons and modules were fitted · 5 October</small></figcaption></figure>
-    <figure class="bruce-photo"><a href="assets/20261005_154451.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20261005_154451.webp" alt="Second view of the assembled Bruce PCB during electrical testing" loading="lazy"></a><figcaption><span>STAGE 03 · ASSEMBLY</span><strong>Electrical testing</strong><small>Further multimeter testing</small></figcaption></figure>
-    <figure class="bruce-photo"><a href="assets/20261005_164000.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20261005_164000.webp" alt="Bruce PCB with peripheral modules connected for testing" loading="lazy"></a><figcaption><span>STAGE 04 · MODULE TEST</span><strong>Modules connected</strong><small>Initial module testing · 5 October</small></figcaption></figure>
-  </div>
-  <h5 class="bruce-subheading">Wiring schematic reference</h5>
-  <figure class="bruce-schematic"><a href="assets/diy-smoochiee-board.jpg" target="_blank" rel="noopener noreferrer"><img src="assets/diy-smoochiee-board.jpg" alt="Wiring schematic reference for the Bruce device" loading="lazy"></a><figcaption>Reference schematic for the intended device wiring and peripherals.</figcaption></figure>
-  
-                  </div>
-                </details>
-              </div>
-            </article>
+        <div class="build-log">
+          <div class="build-log-heading"><div><span class="eyebrow">DEVELOPMENT RECORD</span><h3>The build log.</h3></div><span class="log-count">04 STAGES</span></div>
+          <div class="log-list">
+            <article class="log-item"><span class="log-no">01</span><div><h4>PCB layout in KiCad</h4><p>Routed the board around the ESP32-S3 module, peripheral connectors, passive components and power connections. The board carries its project label and version on the silkscreen.</p></div><span class="log-state">DESIGNED</span></article>
+            <article class="log-item"><span class="log-no">02</span><div><h4>Manufactured bare PCB</h4><p>The green two-layer board arrived with component outlines, labels and through-hole pads ready for assembly.</p></div><span class="log-state">RECEIVED</span></article>
+            <article class="log-item"><span class="log-no">03</span><div><h4>Through-hole assembly</h4><p>Soldered the resistors, capacitors, headers and JST connectors onto the board, leaving the main ESP32-S3 module position ready to accept the development board.</p></div><span class="log-state">ASSEMBLED</span></article>
+            <article class="log-item"><span class="log-no">04</span><div><h4>Modules connected for testing</h4><p>The ESP32-S3 and peripheral modules have been connected to the assembled PCB for initial testing. Physical buttons and the remaining integration work are still pending.</p></div><span class="log-state log-state-live">IN PROGRESS</span></article>
           </div>
         </div>
 
-        <div class="electronics-category">
-          <div class="section-heading"><div><p class="eyebrow">02 / EMBEDDED SYSTEMS</p><h2>Microcontrollers & firmware</h2></div></div>
-          <div class="tile-grid lab-project-grid">
-            <article class="panel project-tile lab-project lab-project-embedded"><div class="tile-art art-embedded">MCU<span>⌘</span></div><div class="tile-content"><details class="lab-project-details"><summary class="lab-project-summary"><span class="pill">EMBEDDED</span><h3>Microcontroller experiments</h3><p>ESP32, Arduino and other hardware experiments, including firmware, peripherals and interfaces.</p><div class="tag-list lab-summary-tags"><span>ESP32</span><span>Arduino</span><span>Firmware</span></div><span class="lab-expand-hint"><span class="lab-expand-open">＋ Explore project</span><span class="lab-expand-close">－ Close details</span></span></summary><div class="lab-project-extra"><h4>Embedded hardware & firmware</h4><p>Experiments with microcontroller platforms, firmware behaviour and hardware interfaces. More build notes and individual experiments will be added as they develop.</p></div></details></div></article>
-          </div>
+        <div class="hardware-spec">
+          <div><span class="eyebrow">HARDWARE SHOWN IN THE WIRING SCHEMATIC</span><h3>A modular system.</h3><p>The supplied schematic is the wiring reference for the intended hardware. The current test photo shows the modules connected; the build is still in progress, so this is not presented as a finished device.</p></div>
+          <div class="hardware-tags"><span>ESP32-S3</span><span>Display</span><span>CC1101</span><span>nRF24L01 PA/LNA</span><span>PN532 NFC</span><span>MicroSD reader</span><span>IR input / output</span><span>GPS module</span></div>
         </div>
 
-        <div class="electronics-category">
-          <div class="section-heading"><div><p class="eyebrow">03 / RADIO FREQUENCY</p><h2>Wireless & telemetry</h2></div></div>
-          <div class="tile-grid lab-project-grid">
-            <article class="panel project-tile lab-project lab-project-radio"><div class="tile-art art-radio">RF<span>⌁</span></div><div class="tile-content"><details class="lab-project-details"><summary class="lab-project-summary"><span class="pill">RADIO / RF</span><h3>Wireless experiments</h3><p>Radio modules, antennas, telemetry and low-power communications projects.</p><div class="tag-list lab-summary-tags"><span>RF modules</span><span>Antennas</span><span>Telemetry</span></div><span class="lab-expand-hint"><span class="lab-expand-open">＋ Explore project</span><span class="lab-expand-close">－ Close details</span></span></summary><div class="lab-project-extra"><h4>Wireless links & telemetry</h4><p>Exploring radio modules, antenna choices and low-power communications, with an emphasis on understanding the hardware and testing responsibly.</p></div></details></div></article>
-          </div>
+        <div class="gallery-heading"><div><span class="eyebrow">THE PROCESS, DOCUMENTED</span><h3>Small steps. Real progress.</h3></div><span>SELECT A PHOTO TO OPEN IT ↗</span></div>
+        <div class="photo-gallery">
+          <a href="assets/20260918_215106.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20260918_215106.webp" alt="Bruce PCB design stage" loading="lazy"><span>01 / PCB DESIGN</span><b>Board design</b><small>KiCad design stage · 18 September</small></a>
+          <a href="assets/20260928_154349.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20260928_154349.webp" alt="Second view of the bare Bruce PCB" loading="lazy"><span>02 / BARE PCB</span><b>Board detail</b><small>Second view of the manufactured PCB</small></a>
+          <a href="assets/20261005_150316.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20261005_150316.webp" alt="Bruce PCB assembled without buttons or peripheral modules" loading="lazy"><span>03 / ASSEMBLY</span><b>Assembly and multimeter checks</b><small>Before buttons and modules were fitted · 5 October</small></a>
+          <a href="assets/20261005_154451.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20261005_154451.webp" alt="Second view of the assembled Bruce PCB during electrical testing" loading="lazy"><span>03 / ASSEMBLY</span><b>Electrical testing</b><small>Further multimeter testing</small></a>
+          <a href="assets/20261005_164000.webp" target="_blank" rel="noopener noreferrer"><img src="assets/20261005_164000.webp" alt="Bruce PCB with peripheral modules connected for testing" loading="lazy"><span>04 / MODULE TEST</span><b>Modules connected</b><small>Initial module testing · 5 October</small></a>
         </div>
+        <figure class="schematic-figure"><a href="assets/diy-smoochiee-board.jpg" target="_blank" rel="noopener noreferrer"><img src="assets/diy-smoochiee-board.jpg" alt="Wiring schematic reference for the Bruce device" loading="lazy"></a><figcaption><span>REFERENCE MATERIAL</span><b>Wiring schematic</b><small>Reference schematic for the intended device wiring and peripherals.</small></figcaption></figure>
 
-        <div class="notice"><span class="notice-icon">+</span><div><strong>Make it yours</strong><p>Each build brings together design, assembly and testing, with an emphasis on reliable hardware and thoughtful documentation.</p></div></div>
-      </section>
-
-      <section class="page" id="page-projects" data-title="PROJECTS">
-        <div class="page-heading"><p class="eyebrow">WORK IN PROGRESS</p><h1>Selected <span>projects</span></h1><p>A changing collection of things I'm building, learning and experimenting with.</p></div>
-        <div class="project-list">
-          <article class="panel project-row project-row-featured project-row-hardware"><div class="project-index">01</div><div class="project-body"><span class="pill pill-green">HARDWARE · PCB DESIGN</span><h2>Custom Bruce Device</h2><p>A purpose-built two-layer PCB for a Bruce-based ESP32-S3 device, designed in KiCad to replace a breadboard-and-jumper-wire prototype with a cleaner, modular layout. The board brings together JST-connected peripherals and modules including CC1101, nRF24L01 PA/LNA, PN532 NFC, microSD, GPS, display and IR hardware.</p><p class="project-detail-copy">The build has progressed through schematic and board layout, PCB manufacture, through-hole assembly and initial electrical checks. Modules are now connected for testing; physical buttons and final integration are still to come. The project is being documented as it moves from prototype to custom hardware.</p><div class="tag-list"><span>KiCad</span><span>2-layer PCB</span><span>ESP32-S3</span><span>JST connectors</span><span>Assembly & testing</span></div></div><span class="project-status">IN PROGRESS</span></article>
-          <article class="panel project-row project-row-featured project-row-infrastructure"><div class="project-index">02</div><div class="project-body"><span class="pill">SELF-HOSTED INFRASTRUCTURE</span><h2>Game servers & service monitoring</h2><p>Running multiplayer services on a Linux VPS, including Stormworks and the KSP Luna Multiplayer server, alongside this self-maintained Sky_Hex website.</p><p class="project-detail-copy">This project covers more than keeping a server online: it involves Linux administration, service startup and recovery, networking and firewall configuration, web hosting with Apache, and a monitoring dashboard that reports public service availability. The aim is to make the services dependable while keeping the status page clear and useful.</p><div class="tag-list"><span>Linux / Ubuntu</span><span>VPS administration</span><span>Apache</span><span>Monitoring</span><span>Networking</span></div></div><span class="project-status">ONGOING</span></article>
-          <article class="panel project-row project-teaser"><div class="project-index">03</div><div class="project-body"><span class="pill project-teaser-pill">TDI · COMPETITION BUILD</span><h2>Autonomous VTOL UAV <span class="teaser-mark">/ IN DEVELOPMENT</span></h2><p>A new aerospace engineering challenge: a vertical-take-off-and-landing unmanned aerial vehicle designed around autonomous flight. The ambition is to bring airframe design, embedded electronics, sensing, flight-control logic and systems integration into one coherent build.</p><p class="project-detail-copy">This is an early teaser, not a claim that the aircraft is already built or flight-tested. More details on the concept, design choices and development milestones will follow as the competition project takes shape.</p><div class="tag-list"><span>Autonomy</span><span>VTOL</span><span>Avionics</span><span>Embedded systems</span><span>Aerospace</span></div></div><span class="project-status project-status-teaser">COMING SOON</span></article>
-          <article class="panel project-row project-row-docs"><div class="project-index">04</div><div class="project-body"><span class="pill">DOCUMENTATION</span><h2>Build notes & experiments</h2><p>Recording design decisions, test results and lessons learned across technical projects, from early prototypes through to assembly and validation.</p><div class="tag-list"><span>Research</span><span>Testing</span><span>Write-ups</span></div></div><span class="project-status">ONGOING</span></article>
+        <div class="other-labs">
+          <article><span class="eyebrow">02 / EMBEDDED SYSTEMS</span><div class="other-icon">⌘</div><h3>Microcontrollers<br>& firmware.</h3><p>ESP32, Arduino and other hardware experiments, including firmware, peripherals and interfaces. Experiments with microcontroller platforms, firmware behaviour and hardware interfaces.</p><div class="tag-list"><span>ESP32</span><span>Arduino</span><span>Firmware</span></div><span class="coming-note">MORE BUILD NOTES TO COME</span></article>
+          <article><span class="eyebrow">03 / RADIO FREQUENCY</span><div class="other-icon">⌁</div><h3>Wireless<br>experiments.</h3><p>Radio modules, antennas, telemetry and low-power communications projects. Exploring radio modules, antenna choices and low-power communications, with an emphasis on understanding the hardware and testing responsibly.</p><div class="tag-list"><span>RF modules</span><span>Antennas</span><span>Telemetry</span></div><span class="coming-note">MORE BUILD NOTES TO COME</span></article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="page" id="page-about" data-title="ABOUT">
-        <div class="page-heading"><p class="eyebrow">THE PERSON BEHIND THE PROJECTS</p><h1>About <span>Sky_Hex</span></h1><p>A personal space for hands-on engineering, self-hosting and learning by building.</p></div>
-        <div class="about-grid"><article class="panel about-main"><div class="about-mark">SH<span>_</span></div><p class="eyebrow">INDEPENDENT · SELF-MANAGED</p><h2>Curiosity, made tangible.</h2><p>Sky_Hex is a personal project hub for hosting game servers and documenting technical builds. The goal is to learn by doing: design something, test it, improve it, and share what can be useful to others.</p><p>Interests include electronics, aviation, computing, networking and engineering projects.</p><div class="hero-actions"><a class="button button-primary" href="https://github.com/109Giraffe" target="_blank" rel="noopener noreferrer">Visit GitHub ↗</a><a class="button button-ghost" href="mailto:Sky_Hex@wearehackerone.com">Sky_Hex@wearehackerone.com</a></div></article><article class="panel about-facts"><div class="panel-title"><span class="title-icon">⌁</span><div><h3>Site principles</h3><p>How this space is run</p></div></div><div class="principle"><span>01</span><div><strong>Learn by building</strong><p>Practical work and documented experiments.</p></div></div><div class="principle"><span>02</span><div><strong>Share selectively</strong><p>Public project notes, private administration.</p></div></div><div class="principle"><span>03</span><div><strong>Keep improving</strong><p>Iterate, test, document and repeat.</p></div></div></article></div>
-      </section>
+    <section class="servers-section section-wrap" id="servers">
+      <div class="section-heading">
+        <div><p class="eyebrow"><span class="eyebrow-line"></span> SELF-HOSTED / 03</p><h2>Systems online.<br><span>Community connected.</span></h2></div>
+        <p class="section-description">Multiplayer worlds hosted and maintained for friends. Public availability only — the behind-the-scenes details stay private.</p>
+      </div>
+      <div class="server-status-bar"><div><span class="live-mark"></span><span id="overallStatus">Checking services</span><small id="lastUpdated">Waiting for live status feed</small></div><span class="server-uptime"><small>SITE COUNTER</small><strong id="siteUptime">Calculating…</strong></span></div>
+      <div class="server-grid">
+        <article class="server-card">
+          <div class="server-card-head"><span class="server-game-mark storm-mark">S</span><span class="server-type">SANDBOX / VEHICLES</span><span class="service-state" data-service="stormworks">Checking</span></div>
+          <h3>Stormworks.</h3><p class="server-subtitle">Build and Rescue</p>
+          <p class="server-description">A multiplayer world for building, testing and operating creations.</p>
+          <div class="server-data"><div><span>SERVER NAME</span><b id="stormworksServerName">Loading…</b></div><div><span>PLAYERS ONLINE</span><b id="stormworksPlayerCount">—</b></div><div><span>PLAYER FEED</span><b id="stormworksPlayersUpdated">Waiting for data</b></div><div><span>ACCESS</span><b>Invite only</b></div><div><span>CONNECTION DETAILS</span><b>Not released to the public</b></div></div>
+        </article>
+        <article class="server-card">
+          <div class="server-card-head"><span class="server-game-mark ksp-mark">K</span><span class="server-type">SPACE / MULTIPLAYER</span><span class="service-state" data-service="ksp">Checking</span></div>
+          <h3>Kerbal Space Program.</h3><p class="server-subtitle">Luna Multiplayer</p>
+          <p class="server-description">A shared spaceflight sandbox for collaborative missions and engineering experiments.</p>
+          <div class="server-data"><div><span>SERVER</span><b>Luna Multiplayer</b></div><div><span>PLAYERS ONLINE</span><b id="lunaPlayerCount">—</b></div><div><span>PLAYER FEED</span><b id="lunaPlayersUpdated">Waiting for data</b></div><div><span>ACCESS</span><b>Apply to join</b></div><div><span>CONNECTION DETAILS</span><b>Released once accepted</b></div></div>
+        </article>
+      </div>
+      <p class="status-disclaimer">Status updates are based on the host's monitoring checks. Connection details are shared directly with invited players.</p>
 
-      <footer class="footer"><div class="footer-left"><span class="footer-symbol">›_</span><span>Sky_Hex <span class="muted">/ public portal</span></span></div><span class="footer-note">“It's not much, but it's mine.”</span><span class="footer-year">© <span id="year"></span> Sky_Hex</span></footer>
-    </main>
-  </div>
+      <article class="community-card">
+        <div class="community-banner"><img src="assets/Screenshot%202024-11-23%20220731.png" alt="Aviators Chasing Team storm-chasing banner" loading="lazy"><span>COMMUNITY PARTNER / AVIATION & WEATHER</span></div>
+        <div class="community-content">
+          <img class="community-avatar" src="assets/Aviators%20Chasing%20Team%20logo%20design.png" alt="Aviators Chasing Team logo" loading="lazy">
+          <div class="community-main"><span class="eyebrow">FIND YOUR PEOPLE</span><h3>Aviators Chasing Team <span class="verified">✓</span></h3><p class="community-subtitle">Aviation-themed storm chasing community</p><p>Join our aviation and storm-chasing community to get access to our multiplayer game servers. Meet other enthusiasts, share your experiences and stay up to date with server news and events.</p><div class="tag-list"><span>Aviation</span><span>Storm chasing</span><span>Game servers</span><span>Community</span></div><div class="community-actions"><a class="discord-button" href="https://discord.gg/yEB6D96JBm" target="_blank" rel="noopener noreferrer">◉ Join Discord <span>↗</span></a><a class="community-site" href="https://teamaviators.co.uk" target="_blank" rel="noopener noreferrer">Visit website ↗</a></div></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="section-wrap about-layout">
+        <div class="about-heading"><p class="eyebrow"><span class="eyebrow-line"></span> THE PERSON BEHIND THE PROJECTS / 04</p><h2>Curiosity,<br><span>made tangible.</span></h2><div class="about-monogram">SH<span>_</span></div></div>
+        <div class="about-copy"><p class="about-lead">Sky_Hex is a personal project hub for hosting game servers and documenting technical builds.</p><p>The goal is to learn by doing: design something, test it, improve it, and share what can be useful to others.</p><p>Interests include electronics, aviation, computing, networking and engineering projects.</p><div class="principles"><div><b>01</b><span><strong>Learn by building</strong><small>Practical work and documented experiments.</small></span></div><div><b>02</b><span><strong>Share selectively</strong><small>Public project notes, private administration.</small></span></div><div><b>03</b><span><strong>Keep improving</strong><small>Iterate, test, document and repeat.</small></span></div></div><div class="about-actions"><a class="button button-dark" href="https://github.com/109Giraffe" target="_blank" rel="noopener noreferrer">Visit GitHub ↗</a><a class="text-link" href="mailto:Sky_Hex@wearehackerone.com">Sky_Hex@wearehackerone.com ↗</a></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="section-wrap footer-inner"><a class="footer-brand" href="#home">SKY<span>_</span>HEX</a><p>“It's not much, but it's mine.”</p><span>© <span id="year"></span> SKY_HEX · PUBLIC PORTAL</span><a href="#home" class="back-top">BACK TO TOP ↑</a></div></footer>
 </body>
 </html>
