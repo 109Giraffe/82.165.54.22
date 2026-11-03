@@ -262,3 +262,39 @@
     font-size: clamp(14px, 3.5vw, 18px);
   }
 }
+
+
+/* Webhook and event-automation showcase */
+.webhook-showcase{position:relative;margin:30px 0 78px;padding:clamp(22px,3.5vw,42px);overflow:hidden;border:1px solid #29445b;border-radius:3px 28px 3px 3px;background:radial-gradient(ellipse at 88% 0%,#16435a55,transparent 38%),linear-gradient(145deg,#0e1c2a,#09131e 72%);box-shadow:0 24px 70px #0003}
+.webhook-showcase:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.17;background-image:linear-gradient(#4b789022 1px,transparent 1px),linear-gradient(90deg,#4b789022 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(110deg,#000,transparent 80%)}
+.webhook-showcase-head{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:30px}
+.webhook-showcase-head h3{margin:8px 0 12px;font:600 clamp(34px,4.5vw,56px)/1 var(--display);letter-spacing:-.06em}
+.webhook-showcase-head h3 span{color:var(--cyan)}
+.webhook-intro{max-width:670px;margin:0;color:#91a6ba;font-size:11px;line-height:1.9}
+.webhook-status-mark{min-width:160px;padding:15px;border:1px solid #31536b;background:#0a1723cc;color:#9bb1c5;font:8px var(--mono);letter-spacing:.1em}
+.webhook-status-mark i{display:inline-block;margin-right:8px}
+.webhook-status-mark span,.webhook-status-mark b{display:block}
+.webhook-status-mark b{margin-top:17px;color:var(--cyan);font-weight:400}
+.webhook-flow{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(9px,2vw,24px);flex-wrap:wrap;margin:30px 0;padding:15px 12px;border-block:1px solid #294157;color:#91a9bd;font:8px var(--mono);letter-spacing:.1em}
+.webhook-flow i{color:var(--cyan);font-style:normal;font-size:14px}
+.webhook-flow strong{color:var(--cyan);font-weight:500}
+.webhook-feature-grid{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.webhook-feature{position:relative;min-height:190px;padding:20px;background:linear-gradient(145deg,#142538dd,#0c1825dd);border:1px solid #2b4054;transition:border-color .2s,transform .2s}
+.webhook-feature:hover{border-color:#5b9ab2;transform:translateY(-2px)}
+.webhook-feature-index{color:#6f8ba2;font:8px var(--mono);letter-spacing:.12em}
+.webhook-feature-icon{display:grid;place-items:center;width:34px;height:34px;margin:17px 0 12px;border:1px solid #3b7188;background:#65e8ff0d;color:var(--cyan);font:18px var(--mono)}
+.webhook-feature h4{margin:0 0 8px;color:#e8f3fc;font:600 17px var(--display)}
+.webhook-feature p{margin:0;color:#8da3b8;font-size:10px;line-height:1.8}
+.webhook-feature small{display:block;margin-top:15px;color:#5f849d;font:7px var(--mono);letter-spacing:.1em}
+.webhook-feature-more{background:linear-gradient(145deg,#102a38,#0c1925)}
+.webhook-showcase-foot{position:relative;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:22px;color:#6f899e;font:8px var(--mono);letter-spacing:.1em}
+.webhook-showcase-foot i{display:inline-block;margin-right:7px}
+.integration-offer{align-items:center}
+.integration-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:17px}
+.integration-tags span{padding:6px 9px;border:1px solid #30495e;color:#9bb3c7;background:#102033;font:8px var(--mono);letter-spacing:.08em}
+.integration-contact{display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-width:205px;padding:19px 20px;border-left:1px solid #36546a;background:linear-gradient(90deg,#10243888,transparent)}
+.integration-contact>span:first-child{color:#7893a9;font:7px var(--mono);letter-spacing:.12em}
+.integration-contact strong{color:var(--cyan);font:600 20px var(--display)}
+.integration-contact .button{margin-top:5px}
+@media(max-width:760px){.webhook-showcase{margin:22px 0 55px;padding:21px}.webhook-showcase-head{flex-direction:column}.webhook-status-mark{width:100%;min-width:0}.webhook-feature-grid{grid-template-columns:1fr 1fr}.webhook-feature{min-height:0;padding:16px}.webhook-flow{justify-content:flex-start}.integration-contact{width:100%;border-left:0;border-top:1px solid #36546a;padding:18px 0 0}.integration-offer{gap:22px}}
+@media(max-width:460px){.webhook-feature-grid{grid-template-columns:1fr}.webhook-feature{padding:18px}.webhook-feature-icon{margin-top:12px}.webhook-showcase-foot{font-size:7px}}
