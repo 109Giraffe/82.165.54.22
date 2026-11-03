@@ -571,3 +571,8 @@ body{background:radial-gradient(ellipse at 78% 8%,#14243b 0,transparent 34%),rad
  .floating-top{right:14px;bottom:14px}
 }
 @media(prefers-reduced-motion:reduce){.ambient-canvas{display:none}}
+
+/* Keep the animated network layer visible behind, never over, page content. */
+.ambient-canvas{z-index:0}
+body>:not(.ambient-canvas):not(.grain):not(.scroll-progress){position:relative;z-index:1}
+.system-hud{z-index:1001}.scroll-progress{z-index:1200}.command-palette{z-index:1500}.floating-top{z-index:900}
