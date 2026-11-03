@@ -126,3 +126,121 @@
  .page-view .section-shell{scroll-margin-top:82px}
 }
 @media(prefers-reduced-motion:reduce){.page-view.is-active{animation:none}}
+
+
+/* Unified page canvas: keep the same deep, neutral atmosphere across every section. */
+.work-section,
+.lab-section,
+.infrastructure-section {
+  background: transparent !important;
+  border: 0;
+  position: relative;
+}
+.work-section:before,
+.lab-section:before,
+.infrastructure-section:before {
+  content: "";
+  display: block;
+  height: 1px;
+  width: min(1280px, 90%);
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, #40566d88 22%, #8c7bff55 50%, #65e8ff55 78%, transparent);
+}
+.work-section:after { display: none; }
+
+/* Let the content, rather than a blue page tint, provide the visual contrast. */
+.work-section .section-heading,
+.lab-section .section-heading,
+.infrastructure-section .section-heading {
+  color: var(--ink);
+}
+.work-section .section-intro,
+.lab-section .section-intro,
+.infrastructure-section .section-intro {
+  color: #a5b5c7;
+}
+.work-section .eyebrow,
+.lab-section .eyebrow,
+.infrastructure-section .eyebrow {
+  color: #9aafc4;
+}
+.work-section .muted-heading,
+.lab-section .muted-heading,
+.infrastructure-section .muted-heading {
+  color: #a0afc1;
+}
+
+/* Crisp, restrained surfaces make each build and system easier to scan. */
+.case-media {
+  border: 1px solid #40566d;
+  box-shadow: 0 28px 80px #0008, 0 0 0 1px #65e8ff12;
+}
+.case-card {
+  border-top-color: #40566d;
+}
+.case-card-body h3,
+.case-content h3,
+.timeline-title h3,
+.gallery-header h3,
+.hardware-panel h3,
+.lab-next-grid h3,
+.infra-deep-copy h3 {
+  color: #f0f6ff;
+}
+.case-card-body p,
+.case-content p,
+.development-timeline p,
+.lab-intro p,
+.hardware-panel p,
+.lab-next-grid p,
+.infra-deep-copy p:not(.eyebrow),
+.integration-offer p:not(.eyebrow) {
+  color: #a0b1c3;
+}
+.lab-intro,
+.hardware-panel,
+.development-timeline article,
+.schematic-panel,
+.lab-next-grid article {
+  background: linear-gradient(145deg, #111a27ee, #0b111bee);
+  border-color: #35495f;
+  box-shadow: 0 18px 48px #0003;
+}
+.development-timeline article.current-step {
+  border-color: #65e8ffb0;
+  box-shadow: inset 0 0 0 1px #65e8ff20, 0 18px 48px #0004;
+}
+.engineering-gallery a {
+  border: 1px solid #35495f;
+  box-shadow: 0 12px 32px #0004;
+}
+.ops-console {
+  border-color: #496078;
+  box-shadow: 0 28px 85px #0007, 0 0 0 1px #65e8ff0b;
+}
+.console-overview {
+  background: linear-gradient(90deg, #111b29, #0c1420);
+}
+.service-card {
+  border-color: #35495f;
+  box-shadow: 0 14px 36px #0003;
+}
+.infra-workflow {
+  background: linear-gradient(90deg, #111a27aa, transparent);
+}
+.integration-offer {
+  border-color: #40566d;
+}
+.infra-tags span,
+.hardware-tags span,
+.cap-tags span {
+  border-color: #3a5067;
+  color: #c2d0df;
+}
+@media (max-width: 760px) {
+  .work-section:before,
+  .lab-section:before,
+  .infrastructure-section:before {
+    width: 88%;
+  }
+}
