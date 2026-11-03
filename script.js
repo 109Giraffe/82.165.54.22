@@ -1,283 +1,179 @@
-/*
- * Public-facing Sky_Hex site.
- * The status feed is read-only and contains only public service states.
- */
-const STATUS_URL = "/status.json";
-const STORMWORKS_PLAYERS_URL = "/players.json";
-const LUNA_PLAYERS_URL = "/luna_players.json";
-const PLAYERS_MAX_AGE_MS = 90_000;
-const STATUS_MAX_AGE_MS = 120_000;
-const PUBLIC_STATUS = {
-  updatedAt: null,
-  services: { stormworks: "unknown", ksp: "unknown" }
-};
-
-const pageNames = ["home", "games", "electronics", "projects", "about"];
-const navLinks = [...document.querySelectorAll("[data-page]")];
-const pages = [...document.querySelectorAll(".page")];
-const currentSection = document.getElementById("currentSection");
-const nav = document.getElementById("primaryNav");
-const menuToggle = document.getElementById("menuToggle");
-
-function showPage(name, updateHash = true) {
-  if (!pageNames.includes(name)) name = "home";
-  pages.forEach(page => page.classList.toggle("active", page.id === `page-${name}`));
-  document.querySelectorAll(".nav-link").forEach(link => {
-    const active = link.dataset.page === name;
-    link.classList.toggle("active", active);
-    if (active) link.setAttribute("aria-current", "page");
-    else link.removeAttribute("aria-current");
-  });
-  currentSection.textContent = name.toUpperCase();
-  nav.classList.remove("open");
-  menuToggle.setAttribute("aria-expanded", "false");
-  if (updateHash && location.hash !== `#${name}`) history.replaceState(null, "", `#${name}`);
-  window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-}
-
-navLinks.forEach(link => link.addEventListener("click", event => {
-  const name = link.dataset.page;
-  if (!name) return;
-  event.preventDefault();
-  showPage(name);
-}));
-
-window.addEventListener("hashchange", () => showPage(location.hash.slice(1), false));
-menuToggle.addEventListener("click", () => {
-  const expanded = menuToggle.getAttribute("aria-expanded") === "true";
-  menuToggle.setAttribute("aria-expanded", String(!expanded));
-  nav.classList.toggle("open", !expanded);
-});
-
-// This is elapsed time since the counter's launch date, not a measured uptime percentage.
-const SITE_COUNTER_START = new Date("2026-10-11T00:00:00Z").getTime();
-
-function updateSiteUptime() {
-  const output = document.getElementById("siteUptime");
-  if (!output) return;
-  let seconds = Math.max(0, Math.floor((Date.now() - SITE_COUNTER_START) / 1000));
-  const days = Math.floor(seconds / 86400);
-  seconds %= 86400;
-  const hours = Math.floor(seconds / 3600);
-  seconds %= 3600;
-  const minutes = Math.floor(seconds / 60);
-  seconds %= 60;
-  output.textContent = `${days}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
-}
-updateSiteUptime();
-setInterval(updateSiteUptime, 1000);
-
-function updateClock() {
-  const now = new Date();
-  document.getElementById("clock").textContent = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-  document.getElementById("dateText").textContent = now.toLocaleDateString([], { weekday: "short", day: "numeric", month: "short", year: "numeric" });
-  document.getElementById("year").textContent = now.getFullYear();
-}
-updateClock();
-setInterval(updateClock, 1000);
-
-const statusLabels = {
-  online: "Online",
-  offline: "Offline",
-  unknown: "Unknown"
-};
-
-function renderPublicStatus() {
-  const services = PUBLIC_STATUS.services;
-  document.querySelectorAll("[data-service]").forEach(el => {
-    const value = services[el.dataset.service];
-    const state = value === "online" || value === "offline" ? value : "unknown";
-    el.textContent = statusLabels[state];
-    el.classList.remove("is-online", "is-offline");
-    if (state === "online") el.classList.add("is-online");
-    if (state === "offline") el.classList.add("is-offline");
-  });
-  document.querySelectorAll("[data-service-text]").forEach(el => {
-    const value = services[el.dataset.service];
-    const state = value === "online" || value === "offline" ? value : "unknown";
-    el.textContent = statusLabels[state];
-  });
-
-  const values = Object.values(services);
-  const overall = document.getElementById("overallStatus");
-  const description = document.getElementById("overallDescription");
-  const sideStatus = document.getElementById("sideStatus");
-  const lastUpdated = document.getElementById("lastUpdated");
-  const sideDot = document.querySelector(".side-status .status-dot");
-  const uptimeDot = document.querySelector(".uptime-foot .status-dot");
-  const uptimeRing = document.querySelector(".uptime-ring");
-  const uptimeRingDot = document.querySelector(".uptime-ring span");
-  const statusClasses = ["status-online", "status-partial", "status-offline", "status-unknown"];
-  [sideDot, uptimeDot, uptimeRing, uptimeRingDot].forEach(el => {
-    if (el) el.classList.remove(...statusClasses);
-  });
-
-  const bothOnline = values.length === 2 && values.every(value => value === "online");
-  const bothOffline = values.length === 2 && values.every(value => value === "offline");
-  const oneOnline = values.length === 2 && values.filter(value => value === "online").length === 1 && values.filter(value => value === "offline").length === 1;
-
-  let overallState = "unknown";
-  if (bothOnline) {
-    overallState = "online";
-    overall.textContent = "All monitored online";
-    description.textContent = "Both monitored services report online.";
-    sideStatus.textContent = "Services online";
-  } else if (oneOnline) {
-    overallState = "partial";
-    overall.textContent = "Partial availability";
-    description.textContent = "One monitored service is online; the other is offline.";
-    sideStatus.textContent = "One service online";
-  } else if (bothOffline) {
-    overallState = "offline";
-    overall.textContent = "All services offline";
-    description.textContent = "Neither monitored service is currently online.";
-    sideStatus.textContent = "All services offline";
-  } else {
-    overall.textContent = "Status unknown";
-    description.textContent = "The live status feed is unavailable or not yet verified.";
-    sideStatus.textContent = "Status unknown";
-    lastUpdated.textContent = "No fresh status feed";
-  }
-
-  const stateClass = overallState === "online" ? "status-online"
-    : overallState === "partial" ? "status-partial"
-    : overallState === "offline" ? "status-offline"
-    : "status-unknown";
-  [sideDot, uptimeDot, uptimeRing, uptimeRingDot].forEach(el => {
-    if (el) el.classList.add(stateClass);
-  });
-  if (PUBLIC_STATUS.updatedAt) {
-    lastUpdated.textContent = "Status checked " + new Date(PUBLIC_STATUS.updatedAt).toLocaleString();
-  }
-}
-
-async function fetchPublicStatus() {
-  try {
-    const response = await fetch(STATUS_URL + "?_=" + Date.now(), { cache: "no-store" });
-    if (!response.ok) throw new Error("Status feed unavailable");
-    const data = await response.json();
-    const timestamp = Date.parse(data.updatedAt);
-    if (!Number.isFinite(timestamp) || Date.now() - timestamp > STATUS_MAX_AGE_MS || timestamp > Date.now() + 30_000) {
-      throw new Error("Status feed is stale");
-    }
-    const services = data.services || {};
-    PUBLIC_STATUS.services = {
-      stormworks: ["online", "offline"].includes(services.stormworks) ? services.stormworks : "unknown",
-      ksp: ["online", "offline"].includes(services.ksp) ? services.ksp : "unknown"
-    };
-    PUBLIC_STATUS.updatedAt = data.updatedAt;
-  } catch {
-    PUBLIC_STATUS.services = { stormworks: "unknown", ksp: "unknown" };
-    PUBLIC_STATUS.updatedAt = null;
-  }
-  renderPublicStatus();
-}
-
-
-async function fetchStormworksPlayers() {
-  const nameEl = document.getElementById("stormworksServerName");
-  const playersEl = document.getElementById("stormworksPlayerCount");
-  const updatedEl = document.getElementById("stormworksPlayersUpdated");
-  if (!nameEl || !playersEl || !updatedEl) return;
-
-  try {
-    const response = await fetch(STORMWORKS_PLAYERS_URL + "?_=" + Date.now(), { cache: "no-store" });
-    if (!response.ok) throw new Error("Player feed unavailable");
-    const data = await response.json();
-    const timestamp = Date.parse(data.updatedAt);
-    if (!Number.isFinite(timestamp) || Date.now() - timestamp > PLAYERS_MAX_AGE_MS ||
-        timestamp > Date.now() + 30_000 || data.online !== true ||
-        typeof data.serverName !== "string" || !Number.isInteger(data.players) ||
-        !Number.isInteger(data.maxPlayers)) {
-      throw new Error("Player feed stale or invalid");
-    }
-    nameEl.textContent = data.serverName;
-    playersEl.textContent = data.players + " / " + data.maxPlayers;
-    updatedEl.textContent = "Updated " + new Date(data.updatedAt).toLocaleTimeString();
-  } catch {
-    nameEl.textContent = "Unavailable";
-    playersEl.textContent = "—";
-    updatedEl.textContent = "Player count unavailable";
-  }
-}
-
-
-async function fetchLunaPlayers() {
-  const playersEl = document.getElementById("lunaPlayerCount");
-  const updatedEl = document.getElementById("lunaPlayersUpdated");
-  if (!playersEl || !updatedEl) return;
-
-  try {
-    const response = await fetch(LUNA_PLAYERS_URL + "?_=" + Date.now(), { cache: "no-store" });
-    if (!response.ok) throw new Error("Luna player feed unavailable");
-    const data = await response.json();
-    const timestamp = Date.parse(data.updatedAt);
-    if (!Number.isFinite(timestamp) || Date.now() - timestamp > PLAYERS_MAX_AGE_MS ||
-        timestamp > Date.now() + 30_000 || data.online !== true ||
-        !Number.isInteger(data.players) || data.players < 0) {
-      throw new Error("Luna player feed stale or invalid");
-    }
-    playersEl.textContent = String(data.players);
-    updatedEl.textContent = "Updated " + new Date(data.updatedAt).toLocaleTimeString();
-  } catch {
-    playersEl.textContent = "—";
-    updatedEl.textContent = "Player count unavailable";
-  }
-}
-
-fetchPublicStatus();
-setInterval(fetchPublicStatus, 30_000);
-fetchStormworksPlayers();
-setInterval(fetchStormworksPlayers, 15_000);
-fetchLunaPlayers();
-setInterval(fetchLunaPlayers, 15_000);
-showPage(location.hash.slice(1) || "home", false);
-
-
-/* Studio interactions: staggered reveals, restrained pointer lighting and card depth. */
+/* Sky_Hex — front-end behaviour and public, read-only service telemetry. */
 (() => {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduceMotion) return;
+  "use strict";
+  const STATUS_URL = "/status.json";
+  const STORMWORKS_PLAYERS_URL = "/players.json";
+  const LUNA_PLAYERS_URL = "/luna_players.json";
+  const PLAYERS_MAX_AGE_MS = 90000;
+  const STATUS_MAX_AGE_MS = 120000;
+  const SITE_COUNTER_START = new Date("2026-10-11T00:00:00Z").getTime();
+  const status = { updatedAt: null, services: { stormworks: "unknown", ksp: "unknown" } };
 
-  const revealSelector = ".section-heading,.overview-grid>.panel,.feature-card,.page-heading,.game-detail,.electronics-banner,.electronics-category,.project-row,.about-grid>.panel,.notice";
-  const revealItems = [...document.querySelectorAll(revealSelector)];
-  if ("IntersectionObserver" in window) {
-    document.documentElement.classList.add("reveal-ready");
-    revealItems.forEach((item, index) => {
-      item.classList.add("reveal-item");
-      item.style.transitionDelay = (index % 4) * 65 + "ms";
+  const menu = document.getElementById("primaryNav");
+  const toggle = document.getElementById("menuToggle");
+  if (menu && toggle) {
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!open));
+      menu.classList.toggle("open", !open);
+      toggle.setAttribute("aria-label", open ? "Open navigation" : "Close navigation");
     });
-    const observer = new IntersectionObserver(entries => {
+    menu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      menu.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open navigation");
+    }));
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        menu.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation");
+      }
+    });
+  }
+
+  // Highlight the section currently in view without changing the browser's hash.
+  const navLinks = [...document.querySelectorAll('.main-nav a[href^="#"]')];
+  const observedSections = ["work", "lab", "servers", "about"]
+    .map(id => document.getElementById(id)).filter(Boolean);
+  if ("IntersectionObserver" in window && observedSections.length) {
+    const sectionObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
+        navLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id));
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -35px 0px" });
-    revealItems.forEach(item => observer.observe(item));
+    }, { rootMargin: "-28% 0px -62% 0px" });
+    observedSections.forEach(section => sectionObserver.observe(section));
   }
 
-  // Gentle pointer tilt on large feature cards only; no movement on touch screens.
-  if (window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
-    document.querySelectorAll(".feature-card").forEach(card => {
-      card.addEventListener("pointermove", event => {
-        const rect = card.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width;
-        const y = (event.clientY - rect.top) / rect.height;
-        card.style.transform = `perspective(900px) rotateX(${(0.5-y)*3}deg) rotateY(${(x-0.5)*3}deg) translateY(-4px)`;
-      });
-      card.addEventListener("pointerleave", () => { card.style.transform = ""; });
+  // A simple elapsed-time counter, not a measured uptime percentage.
+  function updateSiteUptime() {
+    const output = document.getElementById("siteUptime");
+    if (!output) return;
+    let seconds = Math.max(0, Math.floor((Date.now() - SITE_COUNTER_START) / 1000));
+    const days = Math.floor(seconds / 86400); seconds %= 86400;
+    const hours = Math.floor(seconds / 3600); seconds %= 3600;
+    const minutes = Math.floor(seconds / 60); seconds %= 60;
+    output.textContent = `${days}d ${String(hours).padStart(2,"0")}h ${String(minutes).padStart(2,"0")}m ${String(seconds).padStart(2,"0")}s`;
+  }
+  updateSiteUptime();
+  window.setInterval(updateSiteUptime, 1000);
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+
+  const stateLabel = value => value === "online" ? "Online" : value === "offline" ? "Offline" : "Unknown";
+  function renderStatus() {
+    document.querySelectorAll("[data-service]").forEach(el => {
+      const value = status.services[el.dataset.service];
+      const state = value === "online" || value === "offline" ? value : "unknown";
+      el.textContent = stateLabel(state);
+      el.classList.remove("is-online", "is-offline");
+      if (state !== "unknown") el.classList.add("is-" + state);
     });
+    const values = Object.values(status.services);
+    const online = values.filter(value => value === "online").length;
+    const offline = values.filter(value => value === "offline").length;
+    const overall = document.getElementById("overallStatus");
+    const updated = document.getElementById("lastUpdated");
+    if (overall) {
+      if (online === 2) overall.textContent = "All monitored services online";
+      else if (offline === 2) overall.textContent = "All monitored services offline";
+      else if (online === 1 && offline === 1) overall.textContent = "Partial service availability";
+      else overall.textContent = "Service status unknown";
+    }
+    if (updated) updated.textContent = status.updatedAt
+      ? "Last checked " + new Date(status.updatedAt).toLocaleString()
+      : "No fresh status feed";
   }
 
-  // A soft ambient highlight follows the pointer without intercepting input.
-  let frame = 0;
-  window.addEventListener("pointermove", event => {
-    if (frame) return;
-    frame = requestAnimationFrame(() => {
-      document.documentElement.style.setProperty("--pointer-x", event.clientX + "px");
-      document.documentElement.style.setProperty("--pointer-y", event.clientY + "px");
-      frame = 0;
+  async function fetchPublicStatus() {
+    try {
+      const response = await fetch(STATUS_URL + "?_=" + Date.now(), { cache: "no-store" });
+      if (!response.ok) throw new Error("Status feed unavailable");
+      const data = await response.json();
+      const timestamp = Date.parse(data.updatedAt);
+      if (!Number.isFinite(timestamp) || Date.now() - timestamp > STATUS_MAX_AGE_MS || timestamp > Date.now() + 30000) {
+        throw new Error("Status feed is stale");
+      }
+      const services = data.services || {};
+      status.services = {
+        stormworks: ["online", "offline"].includes(services.stormworks) ? services.stormworks : "unknown",
+        ksp: ["online", "offline"].includes(services.ksp) ? services.ksp : "unknown"
+      };
+      status.updatedAt = data.updatedAt;
+    } catch {
+      status.services = { stormworks: "unknown", ksp: "unknown" };
+      status.updatedAt = null;
+    }
+    renderStatus();
+  }
+
+  async function fetchStormworksPlayers() {
+    const name = document.getElementById("stormworksServerName");
+    const players = document.getElementById("stormworksPlayerCount");
+    const updated = document.getElementById("stormworksPlayersUpdated");
+    if (!name || !players || !updated) return;
+    try {
+      const response = await fetch(STORMWORKS_PLAYERS_URL + "?_=" + Date.now(), { cache: "no-store" });
+      if (!response.ok) throw new Error("Player feed unavailable");
+      const data = await response.json();
+      const timestamp = Date.parse(data.updatedAt);
+      if (!Number.isFinite(timestamp) || Date.now() - timestamp > PLAYERS_MAX_AGE_MS ||
+          timestamp > Date.now() + 30000 || data.online !== true ||
+          typeof data.serverName !== "string" || !Number.isInteger(data.players) ||
+          !Number.isInteger(data.maxPlayers)) throw new Error("Player feed stale or invalid");
+      name.textContent = data.serverName;
+      players.textContent = data.players + " / " + data.maxPlayers;
+      updated.textContent = "Updated " + new Date(data.updatedAt).toLocaleTimeString();
+    } catch {
+      name.textContent = "Unavailable";
+      players.textContent = "—";
+      updated.textContent = "Player count unavailable";
+    }
+  }
+
+  async function fetchLunaPlayers() {
+    const players = document.getElementById("lunaPlayerCount");
+    const updated = document.getElementById("lunaPlayersUpdated");
+    if (!players || !updated) return;
+    try {
+      const response = await fetch(LUNA_PLAYERS_URL + "?_=" + Date.now(), { cache: "no-store" });
+      if (!response.ok) throw new Error("Luna player feed unavailable");
+      const data = await response.json();
+      const timestamp = Date.parse(data.updatedAt);
+      if (!Number.isFinite(timestamp) || Date.now() - timestamp > PLAYERS_MAX_AGE_MS ||
+          timestamp > Date.now() + 30000 || data.online !== true ||
+          !Number.isInteger(data.players) || data.players < 0) throw new Error("Luna player feed stale or invalid");
+      players.textContent = String(data.players);
+      updated.textContent = "Updated " + new Date(data.updatedAt).toLocaleTimeString();
+    } catch {
+      players.textContent = "—";
+      updated.textContent = "Player count unavailable";
+    }
+  }
+
+  fetchPublicStatus();
+  window.setInterval(fetchPublicStatus, 30000);
+  fetchStormworksPlayers();
+  window.setInterval(fetchStormworksPlayers, 15000);
+  fetchLunaPlayers();
+  window.setInterval(fetchLunaPlayers, 15000);
+
+  // Reveal elements only when JS is active; no-JS users see the complete page.
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+    document.documentElement.classList.add("js-reveal");
+    const candidates = document.querySelectorAll(".section-heading,.featured-project,.project-card,.documentation-band,.build-stage,.log-item,.hardware-spec,.photo-gallery>a,.other-labs article,.server-card,.community-card,.about-copy");
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -35px 0px" });
+    candidates.forEach((element, index) => {
+      element.classList.add("reveal");
+      element.style.transitionDelay = (index % 3) * 65 + "ms";
+      revealObserver.observe(element);
     });
-  }, { passive: true });
+  }
 })();
