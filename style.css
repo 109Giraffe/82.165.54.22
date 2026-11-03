@@ -7,7 +7,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;overflow-x:hidden}
-body:selection{background:var(--orange);color:white}
+::selection{background:var(--orange);color:white}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 button{font:inherit}
